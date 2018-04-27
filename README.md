@@ -1,1 +1,1 @@
-# keras-training-system
+# master-training-scripts
