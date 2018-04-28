@@ -9,7 +9,6 @@ from utils import split_data, save_artifact, ModelHelper
 
 from train import train
 from evaluate import evaluate
-from writers import *
 
 import tensorflow as tf
 
@@ -93,41 +92,34 @@ def run():
         model = model_builder.build(config)
 
         # train model and get last weigths
-        print("Start training...")
-        #last_weights = train(model, config, experiment, training_directory, validation_directory, f'split_{split_index}')
+        last_weights = train(model, config, experiment, training_directory, validation_directory, f'split_{split_index}')
 
         # load best weights based on validation accuracy
-        #if os.path.isfile(last_weights):
-        #    model.load_weights(last_weights)
+
+        if os.path.isfile(last_weights):
+            model.load_weights(last_weights)
 
         # if fine tune, train model again on config link found 
         # in config
         if config['fine_tuning']['mode'] == 'enabled': 
-            
-            print("Start fine tuning...")
 
             # load config link from config
-            fine_tuning_config = json.load(open(f'./configs/links/{config["fine_tuning"]["link"]}'))
+            fine_tuning_config = json.load(open(f'./configs/active/{config["fine_tuning"]["link"]}'))
 
             # train using new config
-            last_weights = train(model, fine_tuning_config, experiment, training_directory, validation_directory, f'fine_split_{split_index}') 
-
-            # load best weights based on validation accuracy
-            if os.path.isfile(last_weights):
-                model.load_weights(last_weights)
+            train(model, fine_tuning_config, experiment, training_directory, validation_directory, f'split_{split_index}') 
 
         model = ModelHelper(model, number_of_classes, image_width, image_height, image_channels)
 
         # evaluate train model and get metrics
-        print("Start evaluation...")
         split_results = evaluate(model, config, validation_directory, experiment, f'split_{split_index}') 
 
         # merge split results with total results
         merge_dict_of_lists(results, split_results) 
 
     # write summary file 
-    write_kfold_summary(model_summary_path, results, experiment_name, folds, table_size)
-    write_kfold_summary('all-results', results, experiment_name, folds, table_size, 'a')
+    write_model_summary(model_summary_path, results, experiment_name, folds, table_size)
+    write_model_summary('all-results', results, experiment_name, folds, table_size, 'a')
 
     # add kfold summary to experiment
     experiment.add_artifact(model_summary_path)

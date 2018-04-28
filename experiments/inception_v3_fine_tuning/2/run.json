@@ -1,0 +1,93 @@
+{
+  "artifacts": [],
+  "command": "run",
+  "experiment": {
+    "base_dir": "/home/steven/github/keras-training-system",
+    "dependencies": [
+      "importlib==<unknown>",
+      "json==2.0.9",
+      "keras==2.0.8",
+      "numpy==1.13.3",
+      "sacred==0.7.1",
+      "tensorflow==1.3.1"
+    ],
+    "mainfile": "run.py",
+    "name": "inception_v3_fine_tuning",
+    "repositories": [],
+    "sources": [
+      [
+        "evaluate.py",
+        "_sources/evaluate_6b9b8bb899adc5f34d5a55745b09a92b.py"
+      ],
+      [
+        "run.py",
+        "_sources/run_5f182110a9d29e9cc3d9a5169cf73ce1.py"
+      ],
+      [
+        "train.py",
+        "_sources/train_92c51103068509a910a1220d0c4170dc.py"
+      ],
+      [
+        "utils.py",
+        "_sources/utils_c98561095e2565dd0b04930ef4a9bd89.py"
+      ],
+      [
+        "writers.py",
+        "_sources/writers_083ccd2907821f4f8fcb931422d22bae.py"
+      ]
+    ]
+  },
+  "heartbeat": "2018-04-28T18:43:35.941274",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Core(TM) i7-7700K CPU @ 4.20GHz",
+    "gpus": {
+      "driver_version": "384.130",
+      "gpus": [
+        {
+          "model": "GeForce GTX 1080 Ti",
+          "persistence_mode": false,
+          "total_memory": 11163
+        }
+      ]
+    },
+    "hostname": "steven",
+    "os": [
+      "Linux",
+      "Linux-4.13.0-39-generic-x86_64-with-debian-stretch-sid"
+    ],
+    "python_version": "3.6.2"
+  },
+  "meta": {
+    "command": "run",
+    "options": {
+      "--beat_interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print_config": false,
+      "--priority": null,
+      "--queue": false,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [],
+      "help": false,
+      "with": false
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2018-04-28T18:35:19.695134",
+  "status": "INTERRUPTED",
+  "stop_time": "2018-04-28T18:43:35.942372"
+}

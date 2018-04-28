@@ -1,0 +1,2 @@
+INFO - example_configuration_file - Running command 'run'
+INFO - example_configuration_file - Started run with ID "1"

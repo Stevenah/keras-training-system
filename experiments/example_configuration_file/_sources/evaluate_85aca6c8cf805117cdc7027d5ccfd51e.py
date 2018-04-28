@@ -15,12 +15,12 @@ def evaluate(model, config, validation_directory, experiment, file_identifier):
     results_file_name = f'{file_identifier}_{config["summary_files"]["split_evaluation_summary"]}'
     missclassification_file_name = f'{file_identifier}_{config["summary_files"]["missclassification_summary"]}'
 
-    # get temp path
-    temp_path = config['misc']['temp_path']
-
     # get file paths
     results_path = os.path.join(temp_path, results_file_name)
     missclassification_path = os.path.join(temp_path, missclassification_file_name)
+
+    # get temp path
+    temp_path = config['misc']['temp_path']
 
     # get number of classes in model
     number_of_classes = config['dataset']['number_of_classes']

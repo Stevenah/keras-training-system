@@ -1,0 +1,27 @@
+INFO - inception_v3_fine_tuning - Running command 'run'
+INFO - inception_v3_fine_tuning - Started run with ID "2"
+start validating on split 0
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start training...
+Found 4000 images belonging to 8 classes.
+Found 4000 images belonging to 8 classes.
+train indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+validation indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+Epoch 1/25
+124/125 [============================>.] - ETA: 0s - loss: 1.1275 - acc: 0.6129  Epoch 00000: val_acc improved from -inf to 0.77375, saving model to ./temp/split_0_inceptionv3_weights.h5
+125/125 [==============================] - 95s - loss: 1.1260 - acc: 0.6130 - val_loss: 0.6450 - val_acc: 0.7738
+Epoch 2/25
+124/125 [============================>.] - ETA: 0s - loss: 0.6105 - acc: 0.7883 Epoch 00001: val_acc improved from 0.77375 to 0.79200, saving model to ./temp/split_0_inceptionv3_weights.h5
+125/125 [==============================] - 87s - loss: 0.6099 - acc: 0.7885 - val_loss: 0.5525 - val_acc: 0.7920
+Epoch 3/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5153 - acc: 0.8140 Epoch 00002: val_acc improved from 0.79200 to 0.79425, saving model to ./temp/split_0_inceptionv3_weights.h5
+125/125 [==============================] - 87s - loss: 0.5144 - acc: 0.8145 - val_loss: 0.5398 - val_acc: 0.7943
+Epoch 4/25
+124/125 [============================>.] - ETA: 0s - loss: 0.4632 - acc: 0.8289 Epoch 00003: val_acc improved from 0.79425 to 0.81500, saving model to ./temp/split_0_inceptionv3_weights.h5
+125/125 [==============================] - 86s - loss: 0.4629 - acc: 0.8293 - val_loss: 0.4778 - val_acc: 0.8150
+Epoch 5/25
+124/125 [============================>.] - ETA: 0s - loss: 0.4136 - acc: 0.8498 Epoch 00004: val_acc improved from 0.81500 to 0.82650, saving model to ./temp/split_0_inceptionv3_weights.h5
+125/125 [==============================] - 90s - loss: 0.4133 - acc: 0.8503 - val_loss: 0.4494 - val_acc: 0.8265
+Epoch 6/25
+ 36/125 [=======>......................] - ETA: 25s - loss: 0.3686 - acc: 0.8620

@@ -126,8 +126,8 @@ def run():
         merge_dict_of_lists(results, split_results) 
 
     # write summary file 
-    write_kfold_summary(model_summary_path, results, experiment_name, folds, table_size)
-    write_kfold_summary('all-results', results, experiment_name, folds, table_size, 'a')
+    write_model_summary(model_summary_path, results, experiment_name, folds, table_size)
+    write_model_summary('all-results', results, experiment_name, folds, table_size, 'a')
 
     # add kfold summary to experiment
     experiment.add_artifact(model_summary_path)

@@ -1,0 +1,3 @@
+INFO - inception_v3_fine_tuning - Running command 'run'
+INFO - inception_v3_fine_tuning - Started run with ID "1"
+start validating on split 0

@@ -1,0 +1,13 @@
+INFO - example_configuration_file - Running command 'run'
+INFO - example_configuration_file - Started run with ID "2"
+start validating on split 0
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start training...
+Found 4000 images belonging to 8 classes.
+Found 4000 images belonging to 8 classes.
+train indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+validation indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+Epoch 1/1
+124/125 [============================>.] - ETA: 0s - loss: 2.0794 - acc: 0.1283  Epoch 00000: val_acc improved from -inf to 0.12950, saving model to ./temp/split_0_vgg19_weights.h5
+125/125 [==============================] - 94s - loss: 2.0794 - acc: 0.1283 - val_loss: 2.0793 - val_acc: 0.1295
