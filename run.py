@@ -94,11 +94,7 @@ def run():
 
         # train model and get last weigths
         print("Start training...")
-        #last_weights = train(model, config, experiment, training_directory, validation_directory, f'split_{split_index}')
-
-        # load best weights based on validation accuracy
-        #if os.path.isfile(last_weights):
-        #    model.load_weights(last_weights)
+        model = train(model, config, experiment, training_directory, validation_directory, f'split_{split_index}')
 
         # if fine tune, train model again on config link found 
         # in config
@@ -109,12 +105,10 @@ def run():
             # load config link from config
             fine_tuning_config = json.load(open(f'./configs/links/{config["fine_tuning"]["link"]}'))
 
-            # train using new config
-            last_weights = train(model, fine_tuning_config, experiment, training_directory, validation_directory, f'fine_split_{split_index}') 
+            experiment.save_artifact(f'./configs/links/{config["fine_tuning"]["link"]}')
 
-            # load best weights based on validation accuracy
-            if os.path.isfile(last_weights):
-                model.load_weights(last_weights)
+            # train using new config
+            model = train(model, fine_tuning_config, experiment, training_directory, validation_directory, f'fine_split_{split_index}') 
 
         model = ModelHelper(model, number_of_classes, image_width, image_height, image_channels)
 
@@ -151,6 +145,8 @@ if __name__ == '__main__':
         experiment = Experiment(experiment_name)
         experiment.captured_out_filter = apply_backspaces_and_linefeeds
         experiment.observers.append(FileStorageObserver.create(experiment_path))
+
+        experiment.add_artifact(f'./configs/active/{config_file}')
 
         # run experiment
         experiment.automain(run)

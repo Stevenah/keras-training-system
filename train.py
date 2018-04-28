@@ -21,6 +21,7 @@ def train(model, config, experiment, training_directory, validation_directory, f
 
     # get file path
     weights_file_name = f'{file_identifier}_{config["model"]["weights_file"]}'
+    model_file_name = f'{file_identifier}_{config["model"]["model_file"]}'
 
     # get plot file names
     accuracy_plot_file_name = f'{file_identifier}_{config["plot_files"]["accuracy_plot"]}'
@@ -29,6 +30,8 @@ def train(model, config, experiment, training_directory, validation_directory, f
     # declare paths
     accuracy_plot_path = os.path.join(temp_path, accuracy_plot_file_name)
     loss_plot_path = os.path.join(temp_path, loss_plot_file_name)
+
+    model_path = os.path.join(temp_path, model_file_name)
     weights_path = os.path.join(temp_path, weights_file_name)
 
     # callbacks to be called after every epoch
@@ -131,8 +134,13 @@ def train(model, config, experiment, training_directory, validation_directory, f
     experiment.add_artifact(accuracy_plot_path)
     experiment.add_artifact(loss_plot_path)
 
-    # remove temporary files
-    # shutil.rmtree(temp_dir)
+    # load best weights
+    if os.path.isfile(weights_path):
+        model.load_weights(weights_path)
+
+    model.save(model_path)
+
+    experiment.add_artifact(model_path)
 
     # return training history metrics
-    return weights_path
+    return model
