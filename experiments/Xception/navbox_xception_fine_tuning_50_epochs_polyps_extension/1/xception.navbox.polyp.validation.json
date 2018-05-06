@@ -1,0 +1,64 @@
+{
+    "experiment": {
+        "name": "navbox_xception_fine_tuning_50_epochs_polyps_extension"
+    },
+    "model": {
+        "name": "Xception",
+        "architecture": "Xception",
+        "build_file": "xception_fine_tune",
+        "weights_file": "xception_weights.h5",
+        "model_file": "base_xception_fine_tune.h5",
+        "train": false,
+        "load_model": true,
+        "model_splits": [
+            "/home/steven/github/keras-training-system/experiments/navbox_xception_fine_tuning_50_epochs/1/fine_split_0_fine_xception_fine_tune.h5",
+            "/home/steven/github/keras-training-system/experiments/navbox_xception_fine_tuning_50_epochs/1/fine_split_1_fine_xception_fine_tune.h5"
+        ]
+    },
+    "dataset": {
+        "name": "kvasir non-processed",
+        "path": "/home/steven/data/kvasir-pre-processed-border-navbox-removed",
+        "temp": "/home/steven/data/temp",
+        "validation_extension": true,
+        "validation_extension_path": "/home/steven/data/kvasir-non-processed-polyps-extension",
+        "split": 2,
+        "samples": 8000,
+        "number_of_classes": 8
+    },
+    "optimizer": {
+        "name": "nadam",
+        "params": {
+            
+        }
+    },
+    "hyper_parameters": {
+        "epochs": 25,
+        "batch_size": 32,
+        "freeze_layers": 132,
+        "patience": 5
+    },
+    "image_processing": {
+        "image_width": 299,
+        "image_height": 299,
+        "image_channels": 3,
+        "training_data_generator": "basic",
+        "validation_data_generator": "basic"
+    },
+    "summary_files": {
+        "model_evaluation_summary": "model_evaluation_summary.txt",
+        "split_evaluation_summary": "split_evaluation_summary.txt",
+        "missclassification_summary": "missclassification_summary.txt"
+    },
+    "plot_files": {
+        "accuracy_plot": "accuracy_plot.png",
+        "loss_plot": "loss_plot.png"
+    },
+    "fine_tuning": {
+        "mode": "enabled",
+        "link": "xception.navbox.link.json"
+    },
+    "misc": {
+        "table_size": 100,
+        "temp_path": "./temp"
+    }
+}

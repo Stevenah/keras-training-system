@@ -1,0 +1,38 @@
+INFO - navbox_inception_v3_fine_tuning_50_epochs_polyps_extension - Running command 'run'
+INFO - navbox_inception_v3_fine_tuning_50_epochs_polyps_extension - Started run with ID "1"
+start validating on split 0
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start evaluation...
+Starting dyed-resection-margins
+Starting normal-cecum
+Starting normal-pylorus
+Starting dyed-lifted-polyps
+Starting normal-z-line
+Starting ulcerative-colitis
+Starting esophagitis
+Starting polyps
+f1 [0.83087444462690729]
+rec [0.83124279879133667]
+acc [0.95727272727272728]
+prec [0.8358888888888889]
+spec [0.97534074869324772]
+mcc [0.80810982347911131]
+start validating on split 1
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start evaluation...
+Starting dyed-resection-margins
+Starting normal-cecum
+Starting normal-pylorus
+Starting dyed-lifted-polyps
+Starting normal-z-line
+Starting ulcerative-colitis
+Starting esophagitis
+Starting polyps
+f1 [0.83087444462690729, 0.80980294424276811]
+rec [0.83124279879133667, 0.81087743861604045]
+acc [0.95727272727272728, 0.95187500000000003]
+prec [0.8358888888888889, 0.81680555555555556]
+spec [0.97534074869324772, 0.97229247983119094]
+mcc [0.80810982347911131, 0.78495820280401296]

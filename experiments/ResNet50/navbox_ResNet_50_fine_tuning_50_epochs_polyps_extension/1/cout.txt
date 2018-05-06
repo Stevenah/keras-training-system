@@ -1,0 +1,38 @@
+INFO - navbox_ResNet_50_fine_tuning_50_epochs_polyps_extension - Running command 'run'
+INFO - navbox_ResNet_50_fine_tuning_50_epochs_polyps_extension - Started run with ID "1"
+start validating on split 0
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start evaluation...
+Starting dyed-resection-margins
+Starting normal-cecum
+Starting normal-pylorus
+Starting dyed-lifted-polyps
+Starting normal-z-line
+Starting ulcerative-colitis
+Starting esophagitis
+Starting polyps
+f1 [0.85291001573198588]
+rec [0.86173397922552808]
+acc [0.96414772727272724]
+prec [0.8538055555555556]
+spec [0.97956000535081911]
+mcc [0.83545703449367636]
+start validating on split 1
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start evaluation...
+Starting dyed-resection-margins
+Starting normal-cecum
+Starting normal-pylorus
+Starting dyed-lifted-polyps
+Starting normal-z-line
+Starting ulcerative-colitis
+Starting esophagitis
+Starting polyps
+f1 [0.85291001573198588, 0.83223745087810896]
+rec [0.86173397922552808, 0.83744005315440595]
+acc [0.96414772727272724, 0.95715909090909101]
+prec [0.8538055555555556, 0.84305555555555567]
+spec [0.97956000535081911, 0.97546126785569398]
+mcc [0.83545703449367636, 0.81310424011211524]

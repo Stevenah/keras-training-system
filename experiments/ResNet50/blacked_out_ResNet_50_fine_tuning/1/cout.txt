@@ -1,0 +1,39 @@
+INFO - blacked_out_ResNet_50_fine_tuning - Running command 'run'
+INFO - blacked_out_ResNet_50_fine_tuning - Started run with ID "1"
+start validating on split 0
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start training...
+Found 4000 images belonging to 8 classes.
+Found 4000 images belonging to 8 classes.
+train indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+validation indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+Epoch 1/10
+124/125 [============================>.] - ETA: 0s - loss: 0.6880 - acc: 0.7485  Epoch 00000: val_acc improved from -inf to 0.12175, saving model to ./temp/split_0_resnet50_weights.h5
+125/125 [==============================] - 57s - loss: 0.6848 - acc: 0.7498 - val_loss: 2.2925 - val_acc: 0.1217
+Epoch 2/10
+124/125 [============================>.] - ETA: 0s - loss: 0.3473 - acc: 0.8674 Epoch 00001: val_acc improved from 0.12175 to 0.12575, saving model to ./temp/split_0_resnet50_weights.h5
+125/125 [==============================] - 55s - loss: 0.3478 - acc: 0.8670 - val_loss: 2.9354 - val_acc: 0.1258
+Epoch 3/10
+124/125 [============================>.] - ETA: 0s - loss: 0.2743 - acc: 0.8987 Epoch 00002: val_acc improved from 0.12575 to 0.12775, saving model to ./temp/split_0_resnet50_weights.h5
+125/125 [==============================] - 60s - loss: 0.2736 - acc: 0.8990 - val_loss: 3.2920 - val_acc: 0.1278
+Epoch 4/10
+124/125 [============================>.] - ETA: 0s - loss: 0.2531 - acc: 0.9005 Epoch 00003: val_acc improved from 0.12775 to 0.13150, saving model to ./temp/split_0_resnet50_weights.h5
+125/125 [==============================] - 65s - loss: 0.2521 - acc: 0.9008 - val_loss: 3.4159 - val_acc: 0.1315
+Epoch 5/10
+124/125 [============================>.] - ETA: 0s - loss: 0.2097 - acc: 0.9201 Epoch 00004: val_acc improved from 0.13150 to 0.23275, saving model to ./temp/split_0_resnet50_weights.h5
+125/125 [==============================] - 64s - loss: 0.2102 - acc: 0.9200 - val_loss: 3.1879 - val_acc: 0.2328
+Epoch 6/10
+124/125 [============================>.] - ETA: 0s - loss: 0.1815 - acc: 0.9274 Epoch 00005: val_acc improved from 0.23275 to 0.33375, saving model to ./temp/split_0_resnet50_weights.h5
+125/125 [==============================] - 57s - loss: 0.1829 - acc: 0.9267 - val_loss: 3.2025 - val_acc: 0.3337
+Epoch 7/10
+124/125 [============================>.] - ETA: 0s - loss: 0.1661 - acc: 0.9388 Epoch 00006: val_acc improved from 0.33375 to 0.54800, saving model to ./temp/split_0_resnet50_weights.h5
+125/125 [==============================] - 55s - loss: 0.1658 - acc: 0.9390 - val_loss: 1.7152 - val_acc: 0.5480
+Epoch 8/10
+124/125 [============================>.] - ETA: 0s - loss: 0.1492 - acc: 0.9428 Epoch 00007: val_acc improved from 0.54800 to 0.72600, saving model to ./temp/split_0_resnet50_weights.h5
+125/125 [==============================] - 55s - loss: 0.1487 - acc: 0.9433 - val_loss: 0.8649 - val_acc: 0.7260
+Epoch 9/10
+124/125 [============================>.] - ETA: 0s - loss: 0.1423 - acc: 0.9483 Epoch 00008: val_acc improved from 0.72600 to 0.84450, saving model to ./temp/split_0_resnet50_weights.h5
+125/125 [==============================] - 54s - loss: 0.1425 - acc: 0.9485 - val_loss: 0.4151 - val_acc: 0.8445
+Epoch 10/10
+124/125 [============================>.] - ETA: 0s - loss: 0.1193 - acc: 0.9564 

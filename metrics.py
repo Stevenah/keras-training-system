@@ -1,6 +1,9 @@
 import numpy as np
 
 def f1score(TP, TN, FP, FN):
+    """
+    
+    """
     return (2 * TP) / (2 * TP + FP + FN)
 
 def recall(TP, TN, FP, FN):

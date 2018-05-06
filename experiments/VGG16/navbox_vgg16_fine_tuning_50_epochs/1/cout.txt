@@ -1,0 +1,497 @@
+INFO - navbox_vgg16_fine_tuning_50_epochs - Running command 'run'
+INFO - navbox_vgg16_fine_tuning_50_epochs - Started run with ID "1"
+start validating on split 0
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start training...
+Found 4000 images belonging to 8 classes.
+Found 4000 images belonging to 8 classes.
+train indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+validation indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+Epoch 1/25
+124/125 [============================>.] - ETA: 0s - loss: 1.6943 - acc: 0.4461 Epoch 00000: val_acc improved from -inf to 0.57550, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 1.6919 - acc: 0.4477 - val_loss: 1.4147 - val_acc: 0.5755
+Epoch 2/25
+124/125 [============================>.] - ETA: 0s - loss: 1.2617 - acc: 0.6192 Epoch 00001: val_acc improved from 0.57550 to 0.65000, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 1.2604 - acc: 0.6192 - val_loss: 1.1547 - val_acc: 0.6500
+Epoch 3/25
+124/125 [============================>.] - ETA: 0s - loss: 1.0715 - acc: 0.6701 Epoch 00002: val_acc improved from 0.65000 to 0.65850, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 1.0710 - acc: 0.6700 - val_loss: 1.0211 - val_acc: 0.6585
+Epoch 4/25
+124/125 [============================>.] - ETA: 0s - loss: 0.9586 - acc: 0.6976 Epoch 00003: val_acc improved from 0.65850 to 0.70250, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.9581 - acc: 0.6977 - val_loss: 0.9359 - val_acc: 0.7025
+Epoch 5/25
+124/125 [============================>.] - ETA: 0s - loss: 0.8822 - acc: 0.7175 Epoch 00004: val_acc improved from 0.70250 to 0.70875, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.8807 - acc: 0.7185 - val_loss: 0.8789 - val_acc: 0.7087
+Epoch 6/25
+124/125 [============================>.] - ETA: 0s - loss: 0.8281 - acc: 0.7258 Epoch 00005: val_acc improved from 0.70875 to 0.72275, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.8274 - acc: 0.7262 - val_loss: 0.8245 - val_acc: 0.7228
+Epoch 7/25
+124/125 [============================>.] - ETA: 0s - loss: 0.7836 - acc: 0.7409 Epoch 00006: val_acc improved from 0.72275 to 0.74125, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.7840 - acc: 0.7412 - val_loss: 0.7861 - val_acc: 0.7412
+Epoch 8/25
+124/125 [============================>.] - ETA: 0s - loss: 0.7471 - acc: 0.7462 Epoch 00007: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.7473 - acc: 0.7468 - val_loss: 0.7585 - val_acc: 0.7375
+Epoch 9/25
+124/125 [============================>.] - ETA: 0s - loss: 0.7199 - acc: 0.7528 Epoch 00008: val_acc improved from 0.74125 to 0.74175, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.7202 - acc: 0.7528 - val_loss: 0.7369 - val_acc: 0.7418
+Epoch 10/25
+124/125 [============================>.] - ETA: 0s - loss: 0.6967 - acc: 0.7613 Epoch 00009: val_acc improved from 0.74175 to 0.74400, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.6964 - acc: 0.7618 - val_loss: 0.7136 - val_acc: 0.7440
+Epoch 11/25
+124/125 [============================>.] - ETA: 0s - loss: 0.6764 - acc: 0.7664 Epoch 00010: val_acc improved from 0.74400 to 0.76075, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 0.6765 - acc: 0.7662 - val_loss: 0.6950 - val_acc: 0.7608
+Epoch 12/25
+124/125 [============================>.] - ETA: 0s - loss: 0.6589 - acc: 0.7717 Epoch 00011: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.6572 - acc: 0.7730 - val_loss: 0.6790 - val_acc: 0.7550
+Epoch 13/25
+124/125 [============================>.] - ETA: 0s - loss: 0.6413 - acc: 0.7810 Epoch 00012: val_acc did not improve
+125/125 [==============================] - 49s - loss: 0.6409 - acc: 0.7812 - val_loss: 0.6764 - val_acc: 0.7508
+Epoch 14/25
+124/125 [============================>.] - ETA: 0s - loss: 0.6292 - acc: 0.7782 Epoch 00013: val_acc improved from 0.76075 to 0.77425, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 0.6290 - acc: 0.7785 - val_loss: 0.6472 - val_acc: 0.7742
+Epoch 15/25
+124/125 [============================>.] - ETA: 0s - loss: 0.6154 - acc: 0.7823 Epoch 00014: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.6157 - acc: 0.7825 - val_loss: 0.6427 - val_acc: 0.7658
+Epoch 16/25
+124/125 [============================>.] - ETA: 0s - loss: 0.6009 - acc: 0.7863 Epoch 00015: val_acc did not improve
+125/125 [==============================] - 49s - loss: 0.6014 - acc: 0.7853 - val_loss: 0.6347 - val_acc: 0.7702
+Epoch 17/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5914 - acc: 0.7893 Epoch 00016: val_acc did not improve
+125/125 [==============================] - 49s - loss: 0.5912 - acc: 0.7895 - val_loss: 0.6367 - val_acc: 0.7640
+Epoch 18/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5813 - acc: 0.7926 Epoch 00017: val_acc did not improve
+125/125 [==============================] - 50s - loss: 0.5813 - acc: 0.7925 - val_loss: 0.6136 - val_acc: 0.7718
+Epoch 19/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5727 - acc: 0.7949 Epoch 00018: val_acc improved from 0.77425 to 0.77750, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 50s - loss: 0.5725 - acc: 0.7950 - val_loss: 0.6049 - val_acc: 0.7775
+Epoch 20/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5640 - acc: 0.7984 Epoch 00019: val_acc did not improve
+125/125 [==============================] - 49s - loss: 0.5637 - acc: 0.7977 - val_loss: 0.6070 - val_acc: 0.7742
+Epoch 21/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5559 - acc: 0.7991 Epoch 00020: val_acc did not improve
+125/125 [==============================] - 49s - loss: 0.5558 - acc: 0.7998 - val_loss: 0.6013 - val_acc: 0.7732
+Epoch 22/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5481 - acc: 0.8039 Epoch 00021: val_acc improved from 0.77750 to 0.78425, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 51s - loss: 0.5482 - acc: 0.8037 - val_loss: 0.5904 - val_acc: 0.7843
+Epoch 23/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5410 - acc: 0.8092 Epoch 00022: val_acc improved from 0.78425 to 0.78525, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 50s - loss: 0.5402 - acc: 0.8095 - val_loss: 0.5915 - val_acc: 0.7853
+Epoch 24/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5342 - acc: 0.8085 Epoch 00023: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.5338 - acc: 0.8080 - val_loss: 0.5739 - val_acc: 0.7840
+Epoch 25/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5251 - acc: 0.8170 Epoch 00024: val_acc improved from 0.78525 to 0.79125, saving model to ./temp/split_0_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 0.5255 - acc: 0.8170 - val_loss: 0.5763 - val_acc: 0.7913
+Start fine tuning...
+Found 4000 images belonging to 8 classes.
+Found 4000 images belonging to 8 classes.
+train indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+validation indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+Epoch 1/50
+124/125 [============================>.] - ETA: 0s - loss: 0.4971 - acc: 0.8196 Epoch 00000: val_acc improved from -inf to 0.79875, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 52s - loss: 0.4983 - acc: 0.8195 - val_loss: 0.5372 - val_acc: 0.7987
+Epoch 2/50
+124/125 [============================>.] - ETA: 0s - loss: 0.4660 - acc: 0.8248 Epoch 00001: val_acc improved from 0.79875 to 0.80225, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 51s - loss: 0.4658 - acc: 0.8247 - val_loss: 0.5124 - val_acc: 0.8023
+Epoch 3/50
+124/125 [============================>.] - ETA: 0s - loss: 0.4434 - acc: 0.8332 Epoch 00002: val_acc improved from 0.80225 to 0.80725, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 51s - loss: 0.4425 - acc: 0.8333 - val_loss: 0.5005 - val_acc: 0.8073
+Epoch 4/50
+124/125 [============================>.] - ETA: 0s - loss: 0.4239 - acc: 0.8405 Epoch 00003: val_acc improved from 0.80725 to 0.81025, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.4243 - acc: 0.8407 - val_loss: 0.4855 - val_acc: 0.8103
+Epoch 5/50
+124/125 [============================>.] - ETA: 0s - loss: 0.4096 - acc: 0.8435 Epoch 00004: val_acc improved from 0.81025 to 0.81350, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.4087 - acc: 0.8440 - val_loss: 0.4782 - val_acc: 0.8135
+Epoch 6/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3954 - acc: 0.8538 Epoch 00005: val_acc improved from 0.81350 to 0.81750, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 0.3951 - acc: 0.8538 - val_loss: 0.4634 - val_acc: 0.8175
+Epoch 7/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3838 - acc: 0.8526 Epoch 00006: val_acc improved from 0.81750 to 0.82225, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 0.3832 - acc: 0.8530 - val_loss: 0.4663 - val_acc: 0.8223
+Epoch 8/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3717 - acc: 0.8596 Epoch 00007: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.3718 - acc: 0.8598 - val_loss: 0.4611 - val_acc: 0.8180
+Epoch 9/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3607 - acc: 0.8596 Epoch 00008: val_acc improved from 0.82225 to 0.82850, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 0.3609 - acc: 0.8600 - val_loss: 0.4388 - val_acc: 0.8285
+Epoch 10/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3508 - acc: 0.8669 Epoch 00009: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.3511 - acc: 0.8665 - val_loss: 0.4536 - val_acc: 0.8217
+Epoch 11/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3401 - acc: 0.8705 Epoch 00010: val_acc improved from 0.82850 to 0.83100, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.3416 - acc: 0.8698 - val_loss: 0.4350 - val_acc: 0.8310
+Epoch 12/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3345 - acc: 0.8715 Epoch 00011: val_acc improved from 0.83100 to 0.83275, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 0.3333 - acc: 0.8720 - val_loss: 0.4296 - val_acc: 0.8327
+Epoch 13/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3244 - acc: 0.8783 Epoch 00012: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.3239 - acc: 0.8785 - val_loss: 0.4328 - val_acc: 0.8273
+Epoch 14/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3140 - acc: 0.8821 Epoch 00013: val_acc improved from 0.83275 to 0.83325, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.3162 - acc: 0.8812 - val_loss: 0.4319 - val_acc: 0.8333
+Epoch 15/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3091 - acc: 0.8853 Epoch 00014: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.3090 - acc: 0.8855 - val_loss: 0.4307 - val_acc: 0.8303
+Epoch 16/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3012 - acc: 0.8881 Epoch 00015: val_acc improved from 0.83325 to 0.83825, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.3009 - acc: 0.8880 - val_loss: 0.4098 - val_acc: 0.8383
+Epoch 17/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2937 - acc: 0.8881 Epoch 00016: val_acc did not improve
+125/125 [==============================] - 49s - loss: 0.2933 - acc: 0.8885 - val_loss: 0.4258 - val_acc: 0.8335
+Epoch 18/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2870 - acc: 0.8952 Epoch 00017: val_acc did not improve
+125/125 [==============================] - 50s - loss: 0.2873 - acc: 0.8950 - val_loss: 0.4073 - val_acc: 0.8377
+Epoch 19/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2811 - acc: 0.8952 Epoch 00018: val_acc improved from 0.83825 to 0.84050, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 50s - loss: 0.2808 - acc: 0.8955 - val_loss: 0.4159 - val_acc: 0.8405
+Epoch 20/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2751 - acc: 0.8974 Epoch 00019: val_acc did not improve
+125/125 [==============================] - 50s - loss: 0.2743 - acc: 0.8978 - val_loss: 0.4116 - val_acc: 0.8383
+Epoch 21/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2683 - acc: 0.9025 Epoch 00020: val_acc did not improve
+125/125 [==============================] - 50s - loss: 0.2677 - acc: 0.9027 - val_loss: 0.4079 - val_acc: 0.8360
+Epoch 22/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2621 - acc: 0.9030 Epoch 00021: val_acc improved from 0.84050 to 0.84425, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 0.2620 - acc: 0.9030 - val_loss: 0.4063 - val_acc: 0.8442
+Epoch 23/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2559 - acc: 0.9040 Epoch 00022: val_acc improved from 0.84425 to 0.84625, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.2562 - acc: 0.9040 - val_loss: 0.3887 - val_acc: 0.8462
+Epoch 24/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2511 - acc: 0.9110 Epoch 00023: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.2508 - acc: 0.9113 - val_loss: 0.4204 - val_acc: 0.8320
+Epoch 25/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2445 - acc: 0.9128 Epoch 00024: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.2455 - acc: 0.9117 - val_loss: 0.4055 - val_acc: 0.8460
+Epoch 26/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2401 - acc: 0.9133 Epoch 00025: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.2401 - acc: 0.9137 - val_loss: 0.3938 - val_acc: 0.8430
+Epoch 27/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2349 - acc: 0.9158 Epoch 00026: val_acc improved from 0.84625 to 0.84650, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.2344 - acc: 0.9163 - val_loss: 0.3991 - val_acc: 0.8465
+Epoch 28/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2296 - acc: 0.9173 Epoch 00027: val_acc improved from 0.84650 to 0.84750, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.2292 - acc: 0.9175 - val_loss: 0.3872 - val_acc: 0.8475
+Epoch 29/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2231 - acc: 0.9183 Epoch 00028: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.2251 - acc: 0.9175 - val_loss: 0.4027 - val_acc: 0.8417
+Epoch 30/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2203 - acc: 0.9206 Epoch 00029: val_acc improved from 0.84750 to 0.85100, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.2205 - acc: 0.9205 - val_loss: 0.3780 - val_acc: 0.8510
+Epoch 31/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2151 - acc: 0.9252 Epoch 00030: val_acc improved from 0.85100 to 0.85125, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.2156 - acc: 0.9248 - val_loss: 0.3868 - val_acc: 0.8512
+Epoch 32/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2108 - acc: 0.9267 Epoch 00031: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.2116 - acc: 0.9260 - val_loss: 0.3933 - val_acc: 0.8442
+Epoch 33/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2082 - acc: 0.9279 Epoch 00032: val_acc improved from 0.85125 to 0.85350, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.2076 - acc: 0.9283 - val_loss: 0.3760 - val_acc: 0.8535
+Epoch 34/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2034 - acc: 0.9287 Epoch 00033: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.2029 - acc: 0.9293 - val_loss: 0.3983 - val_acc: 0.8470
+Epoch 35/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1994 - acc: 0.9315 Epoch 00034: val_acc improved from 0.85350 to 0.85375, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.1988 - acc: 0.9317 - val_loss: 0.3723 - val_acc: 0.8538
+Epoch 36/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1941 - acc: 0.9307 Epoch 00035: val_acc improved from 0.85375 to 0.85450, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.1946 - acc: 0.9305 - val_loss: 0.3797 - val_acc: 0.8545
+Epoch 37/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1911 - acc: 0.9340 Epoch 00036: val_acc did not improve
+125/125 [==============================] - 49s - loss: 0.1909 - acc: 0.9338 - val_loss: 0.3839 - val_acc: 0.8500
+Epoch 38/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1871 - acc: 0.9370 Epoch 00037: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.1867 - acc: 0.9373 - val_loss: 0.3819 - val_acc: 0.8518
+Epoch 39/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1837 - acc: 0.9365 Epoch 00038: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.1830 - acc: 0.9370 - val_loss: 0.3819 - val_acc: 0.8455
+Epoch 40/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1800 - acc: 0.9405 Epoch 00039: val_acc improved from 0.85450 to 0.85600, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.1801 - acc: 0.9405 - val_loss: 0.3848 - val_acc: 0.8560
+Epoch 41/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1768 - acc: 0.9400 Epoch 00040: val_acc improved from 0.85600 to 0.85725, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 0.1765 - acc: 0.9403 - val_loss: 0.3809 - val_acc: 0.8572
+Epoch 42/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1733 - acc: 0.9435 Epoch 00041: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.1734 - acc: 0.9435 - val_loss: 0.3807 - val_acc: 0.8522
+Epoch 43/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1703 - acc: 0.9446 Epoch 00042: val_acc improved from 0.85725 to 0.86375, saving model to ./temp/fine_split_0_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.1695 - acc: 0.9447 - val_loss: 0.3651 - val_acc: 0.8638
+Epoch 44/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1661 - acc: 0.9468 Epoch 00043: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.1664 - acc: 0.9465 - val_loss: 0.3906 - val_acc: 0.8502
+Epoch 45/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1638 - acc: 0.9478 Epoch 00044: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.1634 - acc: 0.9477 - val_loss: 0.3827 - val_acc: 0.8495
+Epoch 46/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1601 - acc: 0.9501 Epoch 00045: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.1603 - acc: 0.9500 - val_loss: 0.3687 - val_acc: 0.8568
+Epoch 47/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1574 - acc: 0.9501 Epoch 00046: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.1568 - acc: 0.9502 - val_loss: 0.3693 - val_acc: 0.8575
+Epoch 48/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1538 - acc: 0.9506 Epoch 00047: val_acc did not improve
+125/125 [==============================] - 49s - loss: 0.1544 - acc: 0.9505 - val_loss: 0.3877 - val_acc: 0.8558
+Epoch 49/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1507 - acc: 0.9549 Epoch 00048: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.1511 - acc: 0.9545 - val_loss: 0.3721 - val_acc: 0.8515
+Start evaluation...
+Starting dyed-resection-margins
+Starting normal-cecum
+Starting normal-pylorus
+Starting dyed-lifted-polyps
+Starting normal-z-line
+Starting ulcerative-colitis
+Starting esophagitis
+Starting polyps
+f1 [0.84291684950227608]
+rec [0.84471513113824792]
+acc [0.96100000000000008]
+prec [0.84400000000000008]
+spec [0.97780946619304077]
+mcc [0.82160878220264189]
+start validating on split 1
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start training...
+Found 4000 images belonging to 8 classes.
+Found 4000 images belonging to 8 classes.
+train indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+validation indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+Epoch 1/25
+124/125 [============================>.] - ETA: 0s - loss: 1.7183 - acc: 0.4380 Epoch 00000: val_acc improved from -inf to 0.62275, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 1.7158 - acc: 0.4400 - val_loss: 1.4158 - val_acc: 0.6228
+Epoch 2/25
+124/125 [============================>.] - ETA: 0s - loss: 1.2824 - acc: 0.6250 Epoch 00001: val_acc improved from 0.62275 to 0.64450, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 1.2822 - acc: 0.6250 - val_loss: 1.1614 - val_acc: 0.6445
+Epoch 3/25
+124/125 [============================>.] - ETA: 0s - loss: 1.0878 - acc: 0.6676 Epoch 00002: val_acc improved from 0.64450 to 0.66400, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 1.0862 - acc: 0.6693 - val_loss: 1.0328 - val_acc: 0.6640
+Epoch 4/25
+124/125 [============================>.] - ETA: 0s - loss: 0.9704 - acc: 0.7006 Epoch 00003: val_acc improved from 0.66400 to 0.69825, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.9704 - acc: 0.7007 - val_loss: 0.9287 - val_acc: 0.6983
+Epoch 5/25
+124/125 [============================>.] - ETA: 0s - loss: 0.8944 - acc: 0.7132 Epoch 00004: val_acc improved from 0.69825 to 0.72125, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.8935 - acc: 0.7140 - val_loss: 0.8637 - val_acc: 0.7212
+Epoch 6/25
+124/125 [============================>.] - ETA: 0s - loss: 0.8368 - acc: 0.7248 Epoch 00005: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.8365 - acc: 0.7253 - val_loss: 0.8263 - val_acc: 0.7212
+Epoch 7/25
+124/125 [============================>.] - ETA: 0s - loss: 0.7931 - acc: 0.7326 Epoch 00006: val_acc improved from 0.72125 to 0.73850, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.7933 - acc: 0.7322 - val_loss: 0.7791 - val_acc: 0.7385
+Epoch 8/25
+124/125 [============================>.] - ETA: 0s - loss: 0.7558 - acc: 0.7462 Epoch 00007: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.7564 - acc: 0.7460 - val_loss: 0.7581 - val_acc: 0.7382
+Epoch 9/25
+124/125 [============================>.] - ETA: 0s - loss: 0.7287 - acc: 0.7578 Epoch 00008: val_acc improved from 0.73850 to 0.74850, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.7282 - acc: 0.7585 - val_loss: 0.7207 - val_acc: 0.7485
+Epoch 10/25
+124/125 [============================>.] - ETA: 0s - loss: 0.7031 - acc: 0.7639 Epoch 00009: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.7033 - acc: 0.7635 - val_loss: 0.7221 - val_acc: 0.7392
+Epoch 11/25
+124/125 [============================>.] - ETA: 0s - loss: 0.6823 - acc: 0.7639 Epoch 00010: val_acc improved from 0.74850 to 0.75150, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.6828 - acc: 0.7638 - val_loss: 0.6948 - val_acc: 0.7515
+Epoch 12/25
+124/125 [============================>.] - ETA: 0s - loss: 0.6646 - acc: 0.7694 Epoch 00011: val_acc improved from 0.75150 to 0.76200, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 46s - loss: 0.6648 - acc: 0.7700 - val_loss: 0.6764 - val_acc: 0.7620
+Epoch 13/25
+124/125 [============================>.] - ETA: 0s - loss: 0.6508 - acc: 0.7744 Epoch 00012: val_acc improved from 0.76200 to 0.76875, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.6494 - acc: 0.7755 - val_loss: 0.6575 - val_acc: 0.7688
+Epoch 14/25
+124/125 [============================>.] - ETA: 0s - loss: 0.6338 - acc: 0.7805 Epoch 00013: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.6338 - acc: 0.7802 - val_loss: 0.6491 - val_acc: 0.7678
+Epoch 15/25
+124/125 [============================>.] - ETA: 0s - loss: 0.6198 - acc: 0.7858 Epoch 00014: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.6197 - acc: 0.7853 - val_loss: 0.6415 - val_acc: 0.7680
+Epoch 16/25
+124/125 [============================>.] - ETA: 0s - loss: 0.6067 - acc: 0.7883 Epoch 00015: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.6066 - acc: 0.7887 - val_loss: 0.6430 - val_acc: 0.7615
+Epoch 17/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5979 - acc: 0.7898 Epoch 00016: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.5972 - acc: 0.7900 - val_loss: 0.6213 - val_acc: 0.7648
+Epoch 18/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5862 - acc: 0.7951 Epoch 00017: val_acc improved from 0.76875 to 0.77275, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.5864 - acc: 0.7950 - val_loss: 0.6156 - val_acc: 0.7728
+Epoch 19/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5779 - acc: 0.7956 Epoch 00018: val_acc improved from 0.77275 to 0.77700, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.5773 - acc: 0.7955 - val_loss: 0.6084 - val_acc: 0.7770
+Epoch 20/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5687 - acc: 0.7959 Epoch 00019: val_acc improved from 0.77700 to 0.78225, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.5684 - acc: 0.7963 - val_loss: 0.6016 - val_acc: 0.7823
+Epoch 21/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5601 - acc: 0.8039 Epoch 00020: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.5591 - acc: 0.8050 - val_loss: 0.5932 - val_acc: 0.7808
+Epoch 22/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5523 - acc: 0.8012 Epoch 00021: val_acc improved from 0.78225 to 0.79050, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.5526 - acc: 0.8010 - val_loss: 0.5766 - val_acc: 0.7905
+Epoch 23/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5445 - acc: 0.8080 Epoch 00022: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.5444 - acc: 0.8080 - val_loss: 0.5936 - val_acc: 0.7812
+Epoch 24/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5390 - acc: 0.8062 Epoch 00023: val_acc improved from 0.79050 to 0.79475, saving model to ./temp/split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.5389 - acc: 0.8065 - val_loss: 0.5700 - val_acc: 0.7947
+Epoch 25/25
+124/125 [============================>.] - ETA: 0s - loss: 0.5332 - acc: 0.8082 Epoch 00024: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.5327 - acc: 0.8083 - val_loss: 0.5751 - val_acc: 0.7910
+Start fine tuning...
+Found 4000 images belonging to 8 classes.
+Found 4000 images belonging to 8 classes.
+train indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+validation indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+Epoch 1/50
+124/125 [============================>.] - ETA: 0s - loss: 0.5062 - acc: 0.8170 Epoch 00000: val_acc improved from -inf to 0.79400, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 0.5055 - acc: 0.8167 - val_loss: 0.5403 - val_acc: 0.7940
+Epoch 2/50
+124/125 [============================>.] - ETA: 0s - loss: 0.4702 - acc: 0.8208 Epoch 00001: val_acc improved from 0.79400 to 0.80350, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.4699 - acc: 0.8207 - val_loss: 0.5142 - val_acc: 0.8035
+Epoch 3/50
+124/125 [============================>.] - ETA: 0s - loss: 0.4478 - acc: 0.8294 Epoch 00002: val_acc improved from 0.80350 to 0.80450, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.4466 - acc: 0.8303 - val_loss: 0.5028 - val_acc: 0.8045
+Epoch 4/50
+124/125 [============================>.] - ETA: 0s - loss: 0.4282 - acc: 0.8357 Epoch 00003: val_acc improved from 0.80450 to 0.80800, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.4269 - acc: 0.8363 - val_loss: 0.4916 - val_acc: 0.8080
+Epoch 5/50
+124/125 [============================>.] - ETA: 0s - loss: 0.4122 - acc: 0.8427 Epoch 00004: val_acc improved from 0.80800 to 0.81275, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.4118 - acc: 0.8432 - val_loss: 0.4857 - val_acc: 0.8127
+Epoch 6/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3997 - acc: 0.8460 Epoch 00005: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.3982 - acc: 0.8470 - val_loss: 0.4759 - val_acc: 0.8125
+Epoch 7/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3853 - acc: 0.8518 Epoch 00006: val_acc improved from 0.81275 to 0.81400, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.3855 - acc: 0.8515 - val_loss: 0.4640 - val_acc: 0.8140
+Epoch 8/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3758 - acc: 0.8536 Epoch 00007: val_acc improved from 0.81400 to 0.81425, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.3752 - acc: 0.8533 - val_loss: 0.4711 - val_acc: 0.8143
+Epoch 9/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3638 - acc: 0.8596 Epoch 00008: val_acc improved from 0.81425 to 0.82225, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.3638 - acc: 0.8598 - val_loss: 0.4510 - val_acc: 0.8223
+Epoch 10/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3534 - acc: 0.8634 Epoch 00009: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.3540 - acc: 0.8632 - val_loss: 0.4546 - val_acc: 0.8213
+Epoch 11/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3457 - acc: 0.8687 Epoch 00010: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.3449 - acc: 0.8698 - val_loss: 0.4524 - val_acc: 0.8210
+Epoch 12/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3366 - acc: 0.8720 Epoch 00011: val_acc improved from 0.82225 to 0.82400, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.3362 - acc: 0.8722 - val_loss: 0.4410 - val_acc: 0.8240
+Epoch 13/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3292 - acc: 0.8760 Epoch 00012: val_acc improved from 0.82400 to 0.82575, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.3282 - acc: 0.8762 - val_loss: 0.4416 - val_acc: 0.8257
+Epoch 14/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3206 - acc: 0.8780 Epoch 00013: val_acc improved from 0.82575 to 0.83000, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.3200 - acc: 0.8785 - val_loss: 0.4339 - val_acc: 0.8300
+Epoch 15/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3094 - acc: 0.8841 Epoch 00014: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.3122 - acc: 0.8835 - val_loss: 0.4282 - val_acc: 0.8285
+Epoch 16/50
+124/125 [============================>.] - ETA: 0s - loss: 0.3053 - acc: 0.8853 Epoch 00015: val_acc improved from 0.83000 to 0.83075, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.3048 - acc: 0.8858 - val_loss: 0.4352 - val_acc: 0.8307
+Epoch 17/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2991 - acc: 0.8881 Epoch 00016: val_acc improved from 0.83075 to 0.83125, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 47s - loss: 0.2983 - acc: 0.8888 - val_loss: 0.4283 - val_acc: 0.8313
+Epoch 18/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2917 - acc: 0.8926 Epoch 00017: val_acc improved from 0.83125 to 0.83650, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.2918 - acc: 0.8925 - val_loss: 0.4236 - val_acc: 0.8365
+Epoch 19/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2857 - acc: 0.8944 Epoch 00018: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.2854 - acc: 0.8948 - val_loss: 0.4253 - val_acc: 0.8313
+Epoch 20/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2801 - acc: 0.8972 Epoch 00019: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.2799 - acc: 0.8978 - val_loss: 0.4259 - val_acc: 0.8315
+Epoch 21/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2746 - acc: 0.8982 Epoch 00020: val_acc improved from 0.83650 to 0.83875, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.2736 - acc: 0.8985 - val_loss: 0.4084 - val_acc: 0.8387
+Epoch 22/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2676 - acc: 0.9032 Epoch 00021: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.2681 - acc: 0.9030 - val_loss: 0.4176 - val_acc: 0.8317
+Epoch 23/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2630 - acc: 0.9032 Epoch 00022: val_acc improved from 0.83875 to 0.83925, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.2624 - acc: 0.9038 - val_loss: 0.4244 - val_acc: 0.8393
+Epoch 24/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2568 - acc: 0.9062 Epoch 00023: val_acc improved from 0.83925 to 0.84475, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.2568 - acc: 0.9065 - val_loss: 0.3941 - val_acc: 0.8448
+Epoch 25/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2522 - acc: 0.9098 Epoch 00024: val_acc did not improve
+125/125 [==============================] - 47s - loss: 0.2523 - acc: 0.9095 - val_loss: 0.4155 - val_acc: 0.8395
+Epoch 26/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2450 - acc: 0.9128 Epoch 00025: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.2460 - acc: 0.9125 - val_loss: 0.4138 - val_acc: 0.8370
+Epoch 27/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2415 - acc: 0.9138 Epoch 00026: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.2418 - acc: 0.9133 - val_loss: 0.4011 - val_acc: 0.8385
+Epoch 28/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2367 - acc: 0.9115 Epoch 00027: val_acc did not improve
+125/125 [==============================] - 49s - loss: 0.2364 - acc: 0.9117 - val_loss: 0.4064 - val_acc: 0.8427
+Epoch 29/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2335 - acc: 0.9161 Epoch 00028: val_acc improved from 0.84475 to 0.84500, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 0.2329 - acc: 0.9163 - val_loss: 0.4039 - val_acc: 0.8450
+Epoch 30/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2281 - acc: 0.9189 Epoch 00029: val_acc did not improve
+125/125 [==============================] - 50s - loss: 0.2278 - acc: 0.9193 - val_loss: 0.4051 - val_acc: 0.8373
+Epoch 31/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2244 - acc: 0.9209 Epoch 00030: val_acc improved from 0.84500 to 0.84925, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 0.2237 - acc: 0.9213 - val_loss: 0.3939 - val_acc: 0.8492
+Epoch 32/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2192 - acc: 0.9224 Epoch 00031: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.2191 - acc: 0.9223 - val_loss: 0.3979 - val_acc: 0.8423
+Epoch 33/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2151 - acc: 0.9234 Epoch 00032: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.2149 - acc: 0.9235 - val_loss: 0.4030 - val_acc: 0.8480
+Epoch 34/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2128 - acc: 0.9244 Epoch 00033: val_acc improved from 0.84925 to 0.85125, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.2120 - acc: 0.9248 - val_loss: 0.3851 - val_acc: 0.8512
+Epoch 35/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2057 - acc: 0.9282 Epoch 00034: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.2067 - acc: 0.9278 - val_loss: 0.4028 - val_acc: 0.8458
+Epoch 36/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2026 - acc: 0.9292 Epoch 00035: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.2026 - acc: 0.9293 - val_loss: 0.3951 - val_acc: 0.8492
+Epoch 37/50
+124/125 [============================>.] - ETA: 0s - loss: 0.2004 - acc: 0.9320 Epoch 00036: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.1999 - acc: 0.9320 - val_loss: 0.4091 - val_acc: 0.8438
+Epoch 38/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1949 - acc: 0.9345 Epoch 00037: val_acc improved from 0.85125 to 0.85375, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 49s - loss: 0.1955 - acc: 0.9340 - val_loss: 0.3822 - val_acc: 0.8538
+Epoch 39/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1906 - acc: 0.9320 Epoch 00038: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.1915 - acc: 0.9313 - val_loss: 0.3999 - val_acc: 0.8475
+Epoch 40/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1886 - acc: 0.9347 Epoch 00039: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.1885 - acc: 0.9347 - val_loss: 0.3885 - val_acc: 0.8480
+Epoch 41/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1835 - acc: 0.9390 Epoch 00040: val_acc improved from 0.85375 to 0.85500, saving model to ./temp/fine_split_1_vgg16_weights.h5
+125/125 [==============================] - 48s - loss: 0.1848 - acc: 0.9380 - val_loss: 0.3853 - val_acc: 0.8550
+Epoch 42/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1822 - acc: 0.9365 Epoch 00041: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.1820 - acc: 0.9370 - val_loss: 0.3877 - val_acc: 0.8438
+Epoch 43/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1770 - acc: 0.9383 Epoch 00042: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.1776 - acc: 0.9377 - val_loss: 0.3976 - val_acc: 0.8495
+Epoch 44/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1756 - acc: 0.9413 Epoch 00043: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.1757 - acc: 0.9410 - val_loss: 0.3840 - val_acc: 0.8492
+Epoch 45/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1726 - acc: 0.9430 Epoch 00044: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.1722 - acc: 0.9435 - val_loss: 0.3870 - val_acc: 0.8540
+Epoch 46/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1694 - acc: 0.9420 Epoch 00045: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.1694 - acc: 0.9420 - val_loss: 0.3916 - val_acc: 0.8512
+Epoch 47/50
+124/125 [============================>.] - ETA: 0s - loss: 0.1663 - acc: 0.9438 Epoch 00046: val_acc did not improve
+125/125 [==============================] - 48s - loss: 0.1661 - acc: 0.9437 - val_loss: 0.3982 - val_acc: 0.8417
+Start evaluation...
+Starting dyed-resection-margins
+Starting normal-cecum
+Starting normal-pylorus
+Starting dyed-lifted-polyps
+Starting normal-z-line
+Starting ulcerative-colitis
+Starting esophagitis
+Starting polyps
+f1 [0.84291684950227608, 0.83226084285088775]
+rec [0.84471513113824792, 0.83930710064937886]
+acc [0.96100000000000008, 0.95837499999999998]
+prec [0.84400000000000008, 0.83350000000000002]
+spec [0.97780946619304077, 0.97640660432774273]
+mcc [0.82160878220264189, 0.81124028391662151]
+INFO - navbox_vgg16_fine_tuning_50_epochs - Completed after 2:00:36

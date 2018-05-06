@@ -1,0 +1,39 @@
+INFO - non_xception_fine_tuning_50_epochs_polyps_extension - Running command 'run'
+INFO - non_xception_fine_tuning_50_epochs_polyps_extension - Started run with ID "1"
+start validating on split 0
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start evaluation...
+Starting dyed-resection-margins
+Starting normal-cecum
+Starting normal-pylorus
+Starting dyed-lifted-polyps
+Starting normal-z-line
+Starting ulcerative-colitis
+Starting esophagitis
+Starting polyps
+f1 [0.8435453549195161]
+rec [0.84114259713978567]
+acc [0.96090909090909093]
+prec [0.84899999999999998]
+spec [0.9774285827584992]
+mcc [0.82213309874943363]
+start validating on split 1
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start evaluation...
+Starting dyed-resection-margins
+Starting normal-cecum
+Starting normal-pylorus
+Starting dyed-lifted-polyps
+Starting normal-z-line
+Starting ulcerative-colitis
+Starting esophagitis
+Starting polyps
+f1 [0.8435453549195161, 0.83232788584132256]
+rec [0.84114259713978567, 0.83180484974050672]
+acc [0.96090909090909093, 0.95772727272727276]
+prec [0.84899999999999998, 0.83611111111111103]
+spec [0.9774285827584992, 0.97556075261889919]
+mcc [0.82213309874943363, 0.8091121800362705]
+INFO - non_xception_fine_tuning_50_epochs_polyps_extension - Completed after 0:04:34

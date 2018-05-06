@@ -6,7 +6,8 @@
         "name": "VGG-19-Example",
         "architecture": "VGG-19",
         "build_file": "vgg19",
-        "weights_file": "vgg19_weights.h5"
+        "weights_file": "example_weights.h5",
+        "model_file": "base_example.h5"
     },
     "dataset": {
         "name": "kvasir non-processed",

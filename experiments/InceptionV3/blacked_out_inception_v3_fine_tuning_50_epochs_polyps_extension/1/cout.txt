@@ -1,0 +1,38 @@
+INFO - blacked_out_inception_v3_fine_tuning_50_epochs_polyps_extension - Running command 'run'
+INFO - blacked_out_inception_v3_fine_tuning_50_epochs_polyps_extension - Started run with ID "1"
+start validating on split 0
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start evaluation...
+Starting dyed-resection-margins
+Starting normal-cecum
+Starting normal-pylorus
+Starting dyed-lifted-polyps
+Starting normal-z-line
+Starting ulcerative-colitis
+Starting esophagitis
+Starting polyps
+f1 [0.83232409727274748]
+rec [0.83193846148760264]
+acc [0.95767045454545452]
+prec [0.83763888888888882]
+spec [0.97555453301580186]
+mcc [0.80967437719979685]
+start validating on split 1
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start evaluation...
+Starting dyed-resection-margins
+Starting normal-cecum
+Starting normal-pylorus
+Starting dyed-lifted-polyps
+Starting normal-z-line
+Starting ulcerative-colitis
+Starting esophagitis
+Starting polyps
+f1 [0.83232409727274748, 0.80598877489716025]
+rec [0.83193846148760264, 0.8051992253875333]
+acc [0.95767045454545452, 0.9511931818181818]
+prec [0.83763888888888882, 0.81247222222222215]
+spec [0.97555453301580186, 0.97186181757435519]
+mcc [0.80967437719979685, 0.77987592539214612]

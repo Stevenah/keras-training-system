@@ -1,0 +1,39 @@
+INFO - blacked_out_vgg19_fine_tuning_50_epochs_polyps_extension - Running command 'run'
+INFO - blacked_out_vgg19_fine_tuning_50_epochs_polyps_extension - Started run with ID "1"
+start validating on split 0
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start evaluation...
+Starting dyed-resection-margins
+Starting normal-cecum
+Starting normal-pylorus
+Starting dyed-lifted-polyps
+Starting normal-z-line
+Starting ulcerative-colitis
+Starting esophagitis
+Starting polyps
+f1 [0.77997176112967503]
+rec [0.78626421790013634]
+acc [0.94301136363636362]
+prec [0.79791666666666661]
+spec [0.96763512409446362]
+mcc [0.75568732928699633]
+start validating on split 1
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start evaluation...
+Starting dyed-resection-margins
+Starting normal-cecum
+Starting normal-pylorus
+Starting dyed-lifted-polyps
+Starting normal-z-line
+Starting ulcerative-colitis
+Starting esophagitis
+Starting polyps
+f1 [0.77997176112967503, 0.76612168858577578]
+rec [0.78626421790013634, 0.76972263640300798]
+acc [0.94301136363636362, 0.93971590909090907]
+prec [0.79791666666666661, 0.79030555555555559]
+spec [0.96763512409446362, 0.96595374466948081]
+mcc [0.75568732928699633, 0.74129164880545984]
+INFO - blacked_out_vgg19_fine_tuning_50_epochs_polyps_extension - Completed after 0:02:50

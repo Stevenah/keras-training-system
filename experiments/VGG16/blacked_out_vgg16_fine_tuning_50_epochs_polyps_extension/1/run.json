@@ -1,0 +1,108 @@
+{
+  "artifacts": [
+    "vgg16.blacked.polyp.validation.json"
+  ],
+  "command": "run",
+  "experiment": {
+    "base_dir": "/home/steven/github/keras-training-system",
+    "dependencies": [
+      "importlib==<unknown>",
+      "json==2.0.9",
+      "keras==2.0.8",
+      "numpy==1.13.3",
+      "sacred==0.7.1",
+      "shutil==<unknown>",
+      "tensorflow==1.3.1"
+    ],
+    "mainfile": "run.py",
+    "name": "blacked_out_vgg16_fine_tuning_50_epochs_polyps_extension",
+    "repositories": [],
+    "sources": [
+      [
+        "evaluate.py",
+        "_sources/evaluate_6b9b8bb899adc5f34d5a55745b09a92b.py"
+      ],
+      [
+        "run.py",
+        "_sources/run_f663f11e7dfc5841151ceb7264a3ee98.py"
+      ],
+      [
+        "train.py",
+        "_sources/train_fa3e3b9ad61bdbf00ca0277f4e9fe1b3.py"
+      ],
+      [
+        "utils.py",
+        "_sources/utils_c98561095e2565dd0b04930ef4a9bd89.py"
+      ],
+      [
+        "writers.py",
+        "_sources/writers_49b600fad15ed3f8004e08931c66675b.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/home/steven/.conda/envs/py36/lib/python3.6/site-packages/sacred/config/captured_function.py\", line 47, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"run.py\", line 114, in run\n    model = load_model(config['model']['model_splits'][split_index])\n",
+    "  File \"/home/steven/.conda/envs/py36/lib/python3.6/site-packages/keras/models.py\", line 233, in load_model\n    with h5py.File(filepath, mode='r') as f:\n",
+    "  File \"/home/steven/.conda/envs/py36/lib/python3.6/site-packages/h5py/_hl/files.py\", line 269, in __init__\n    fid = make_fid(name, mode, userblock_size, fapl, swmr=swmr)\n",
+    "  File \"/home/steven/.conda/envs/py36/lib/python3.6/site-packages/h5py/_hl/files.py\", line 99, in make_fid\n    fid = h5f.open(name, flags, fapl=fapl)\n",
+    "  File \"h5py/_objects.pyx\", line 54, in h5py._objects.with_phil.wrapper\n",
+    "  File \"h5py/_objects.pyx\", line 55, in h5py._objects.with_phil.wrapper\n",
+    "  File \"h5py/h5f.pyx\", line 78, in h5py.h5f.open\n",
+    "OSError: Unable to open file (unable to open file: name = '/home/steven/github/keras-training-system/experiments/blacked_vgg16_fine_tuning_50_epochs/1/fine_split_0_fine_vgg16_fine_tune.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)\n"
+  ],
+  "heartbeat": "2018-05-06T08:38:14.583771",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Core(TM) i7-7700K CPU @ 4.20GHz",
+    "gpus": {
+      "driver_version": "384.130",
+      "gpus": [
+        {
+          "model": "GeForce GTX 1080 Ti",
+          "persistence_mode": false,
+          "total_memory": 11163
+        }
+      ]
+    },
+    "hostname": "steven",
+    "os": [
+      "Linux",
+      "Linux-4.13.0-39-generic-x86_64-with-debian-stretch-sid"
+    ],
+    "python_version": "3.6.2"
+  },
+  "meta": {
+    "command": "run",
+    "options": {
+      "--beat_interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print_config": false,
+      "--priority": null,
+      "--queue": false,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [],
+      "help": false,
+      "with": false
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2018-05-06T08:38:07.566834",
+  "status": "FAILED",
+  "stop_time": "2018-05-06T08:38:14.584628"
+}

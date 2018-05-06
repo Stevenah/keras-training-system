@@ -1,0 +1,38 @@
+INFO - blacked_out_ResNet_50_fine_tuning_50_epochs_polyps_extension - Running command 'run'
+INFO - blacked_out_ResNet_50_fine_tuning_50_epochs_polyps_extension - Started run with ID "1"
+start validating on split 0
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start evaluation...
+Starting dyed-resection-margins
+Starting normal-cecum
+Starting normal-pylorus
+Starting dyed-lifted-polyps
+Starting normal-z-line
+Starting ulcerative-colitis
+Starting esophagitis
+Starting polyps
+f1 [0.85413513481356573]
+rec [0.8564193359387211]
+acc [0.96448863636363635]
+prec [0.85675000000000001]
+spec [0.97965955180908515]
+mcc [0.83536485689552042]
+start validating on split 1
+training on /home/steven/data/temp/training_data
+validation on /home/steven/data/temp/validation_data
+Start evaluation...
+Starting dyed-resection-margins
+Starting normal-cecum
+Starting normal-pylorus
+Starting dyed-lifted-polyps
+Starting normal-z-line
+Starting ulcerative-colitis
+Starting esophagitis
+Starting polyps
+f1 [0.85413513481356573, 0.8324670018362228]
+rec [0.8564193359387211, 0.830067541671902]
+acc [0.96448863636363635, 0.95767045454545452]
+prec [0.85675000000000001, 0.84375]
+spec [0.97965955180908515, 0.97565854093454685]
+mcc [0.83536485689552042, 0.81126354000981071]
