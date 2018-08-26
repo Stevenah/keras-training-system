@@ -1,6 +1,6 @@
+from keras.applications.inception_resnet_v2 import InceptionResNetV2
+from keras.layers import Dense, GlobalAveragePooling2D
 from keras.models import Model
-from keras.layers import Flatten, Dense
-from keras.applications.vgg16 import VGG16
 
 def build(config):
 
@@ -10,14 +10,14 @@ def build(config):
 
     number_of_classes = config['dataset']['number_of_classes']
 
-    base_model = VGG16(
-        weights=None,
-        include_top=False,
-        input_shape=(image_width, image_height, image_channels))
+    base_model = InceptionResNetV2(
+        input_shape=(image_width, image_height, image_channels),
+        weights='imagenet',
+        include_top=False)
 
     x = base_model.output
-    x = Flatten()(x)
-
+    x = GlobalAveragePooling2D()(x)
+    
     predictions = Dense(
         units=number_of_classes,
         activation='softmax',

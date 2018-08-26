@@ -1,16 +1,16 @@
+from keras.applications.nasnet import NASNetLarge
+from keras.layers import Dense, GlobalAveragePooling2D
 from keras.models import Model
-from keras.layers import Flatten, Dense, GlobalAveragePooling2D
-from keras.applications.inception_v3 import InceptionV3
 
 def build(config):
-    
+
     image_width    = config['image_processing']['image_width']
     image_height   = config['image_processing']['image_height']
     image_channels = config['image_processing']['image_channels']
 
     number_of_classes = config['dataset']['number_of_classes']
 
-    base_model = InceptionV3(
+    base_model = NASNetLarge(
         input_shape=(image_width, image_height, image_channels),
         weights='imagenet',
         include_top=False)
@@ -23,4 +23,6 @@ def build(config):
         activation='softmax',
         name='predictions')(x)
 
-    return Model(base_model.input, predictions)
+    return Model(inputs=base_model.input, outputs=predictions)
+
+    

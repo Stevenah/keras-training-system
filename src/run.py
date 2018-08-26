@@ -5,7 +5,7 @@ from sacred import Experiment
 from sacred.utils import apply_backspaces_and_linefeeds
 from sacred.observers import FileStorageObserver
 
-from utils.util import prepare_dataset, merge_dict_of_lists, split_data, save_artifact, ModelHelper
+from utils.util import prepare_dataset, split_data, ModelHelper
 from utils.writers import *
 from utils.constants import TEMP_PATH
 
@@ -44,16 +44,20 @@ def run():
     # add config file to experiment
     experiment.add_artifact(config_path)
 
+    if config['dataset'].get('link', True):
+        dataset_config_path = f'../configs/datasets/{config['dataset']["link"]}''
+        experiment.add_artifact(dataset_config_path)
+        config['dataset'].update( json.load( open( dataset_config_path ) ) )
+
     # import model builder
-    model_builder = importlib.import_module(f'models.{config["model"]["build_file"]}')
+    model_builder_path = config['model']['build_file']
+    model_builder = importlib.import_module(f'models.{model_builder_path}')
 
     # TODO: make this dynamic
-    # table size for print table
     table_size = config['misc']['table_size']
-
-    # kfolds summary filename
-    model_summary_file_name = config['summary_files']['model_evaluation_summary']
-    model_summary_path = os.path.join(TEMP_PATH, model_summary_file_name)
+        
+    # kfold summary filename
+    model_summary_path = os.path.join(TEMP_PATH, 'model_evaluation_summary')
 
     # image dimensions for training and validation 
     image_width = config['image_processing']['image_width']
@@ -110,7 +114,7 @@ def run():
         if config['model'].get('load_model', False):
             model = load_model(config['model']['model_splits'][split_index])
         else: 
-            model = model_builder.build(config)
+            model = model_builder.build(config, config['dataset'])
 
         # train model and get last weigths
         if config['model'].get('train', True):
@@ -118,15 +122,20 @@ def run():
             model = train(model, config, experiment, training_directory, validation_directory, f'split_{split_index}')
 
         # if fine tune, train model again on config link found in config
-        if config['fine_tuning']['mode'] and config['model'].get('train', True): 
+        if config['fine_tuning']['enabled'] and config['model'].get('train', True): 
             
             print("Start fine tuning...")
 
             # load config link from config
-            fine_tuning_config = json.load(open(f'./configs/links/{config["fine_tuning"]["link"]}'))
+            fine_tuning_config = json.load(open(f'../configs/links/{config["fine_tuning"]["link"]}'))
+
+            if fine_tuning_config['dataset'].get('link', True):
+                dataset_config_path = f'../configs/datasets/{fine_tuning_config['dataset']["link"]}'
+                experment.add_artifact( dataset_config_path )
+                fine_tuning_config['dataset'].update( json.load(open( dataset_config_path ) ) )
 
             # add link config to experiment
-            experiment.add_artifact(f'./configs/links/{config["fine_tuning"]["link"]}')
+            experiment.add_artifact(f'../configs/links/{config["fine_tuning"]["link"]}')
 
             # train using new config
             model = train(model, fine_tuning_config, experiment, training_directory, validation_directory, f'fine_split_{split_index}') 
@@ -143,12 +152,12 @@ def run():
             results[key].append(split_results[key])
             print(key, results[key])
 
-    # write summary file 
-    write_kfold_summary(model_summary_path, results, experiment_name, folds, table_size)
-    write_kfold_summary('all-results', results, experiment_name, folds, table_size, 'a')
+    # log results
+    cross_validation_log_path = log_cross_validation_results(results, experiment_name, folds)
+    log_to_results_comparisoin(results, experiment_name, folds)
 
     # add kfold summary to experiment
-    experiment.add_artifact(model_summary_path)
+    experiment.add_artifact(cross_validation_log_path)
 
 if __name__ == '__main__':
     

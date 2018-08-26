@@ -166,7 +166,7 @@ def split_data(folds, data_dir):
             for filename in os.listdir(class_dir)[split_start:split_end]:
                 file_source = os.path.join(class_dir, filename)
                 file_dest = os.path.join(split_dir, filename)
-                shutil.copy(file_source, file_dest)
+                os.symlink(file_source, file_dest)
 
             split_start += split_size
             split_end += split_size

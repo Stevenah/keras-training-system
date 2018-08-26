@@ -19,7 +19,7 @@ def build(config):
     x = GlobalAveragePooling2D()(x)
     
     predictions = Dense(
-        number_of_classes,
+        units=number_of_classes,
         activation='softmax',
         name='predictions')(x)
 

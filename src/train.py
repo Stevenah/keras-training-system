@@ -11,27 +11,28 @@ import importlib
 import shutil
 import os
 
-# location of temp files
-temp_dir = './temp'
-
 # function for training a model given a configuration
 def train(model, config, experiment, training_directory, validation_directory, file_identifier):
+    
+    # extract model and weight file names
+    weights_file_name = config['model']['weights_file']
+    model_file_name = config['model']['model_file']
 
     # get file path
-    weights_file_name = f'{file_identifier}_{config["model"]["weights_file"]}'
-    model_file_name = f'{file_identifier}_{config["model"]["model_file"]}'
+    weights_file = f'{file_identifier}_{weights_file_name}'
+    model_file = f'{file_identifier}_{model_file_name}'
 
     # get plot file names
-    accuracy_plot_file_name = f'{file_identifier}_{config["plot_files"]["accuracy_plot"]}'
-    loss_plot_file_name = f'{file_identifier}_{config["plot_files"]["loss_plot"]}'
+    accuracy_plot_file = f'{file_identifier}_accuracy_plot.png'
+    loss_plot_file = f'{file_identifier}_loss_plot.png'
 
     # plot file paths
-    accuracy_plot_path = os.path.join(TEMP_PATH, accuracy_plot_file_name)
-    loss_plot_path = os.path.join(TEMP_PATH, loss_plot_file_name)
+    accuracy_plot_path = os.path.join(TEMP_PATH, accuracy_plot_file)
+    loss_plot_path = os.path.join(TEMP_PATH, loss_plot_file)
 
     # weights/model file paths
-    model_path = os.path.join(TEMP_PATH, model_file_name)
-    weights_path = os.path.join(TEMP_PATH, weights_file_name)
+    model_path = os.path.join(TEMP_PATH, model_file)
+    weights_path = os.path.join(TEMP_PATH, weights_file)
 
     # callbacks to be called after every epoch
     callbacks = [
@@ -73,15 +74,18 @@ def train(model, config, experiment, training_directory, validation_directory, f
     image_channels = config['image_processing']['image_channels'] # number of image channels
 
     # set training steps based on training sampels and batch size
-    training_steps   = training_samples // batch_size   # number of training batches in one epoch
+    training_steps = training_samples // batch_size   # number of training batches in one epoch
     validation_steps = validation_samples // batch_size # number of validation batches in one epoch
 
     # build optimizer
     optimizer = build_optimizer(config['optimizer'])
 
+    training_generator_file = config['image_processing']['training_data_generator']
+    validation_generator_file = config['image_processing']['validation_data_generator']
+
     # build data generators
-    training_data_generator   = importlib.import_module(f'generators.{config["image_processing"]["training_data_generator"]}').train_data_generator
-    validation_data_generator = importlib.import_module(f'generators.{config["image_processing"]["validation_data_generator"]}').validation_data_generator
+    training_data_generator = importlib.import_module(f'generators.{training_generator_file}').train_data_generator
+    validation_data_generator = importlib.import_module(f'generators.{validation_generator_file}').validation_data_generator
 
     # freeze layers based on freeze_layers parameter
     for layer in model.layers[:freeze_layers]:
@@ -92,12 +96,12 @@ def train(model, config, experiment, training_directory, validation_directory, f
     # initialize training generator
     training_generator = training_data_generator.flow_from_directory(
         training_directory, target_size=(image_width, image_height),
-        batch_size=batch_size, class_mode='categorical')
+        batch_size=batch_size, class_mode='categorical', follow_links=True)
 
     # initialize validation generator
     validation_generator = validation_data_generator.flow_from_directory(
         validation_directory, target_size=(image_width, image_height),
-        batch_size=batch_size, class_mode='categorical')
+        batch_size=batch_size, class_mode='categorical', follow_links=True)
 
     # only set early stopping if patience is more than 0
     if patience > 0:

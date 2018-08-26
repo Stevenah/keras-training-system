@@ -22,13 +22,14 @@ def evaluate(model, config, validation_directory, experiment, file_identifier):
 
     # get number of classes in model
     number_of_classes = config['dataset']['number_of_classes']
+
     table_size = config['misc']['table_size']
 
     # get class directory names from validation directory
     class_names = get_sub_dirs(validation_directory)
 
     # get keras labels in label-index format
-    label_index = { class_name: index for class_name, index in enumerate(class_names) }
+    label_index = { class_name: index for index, class_name in enumerate(class_names) }
 
     # praper confusion table
     confusion = np.zeros((number_of_classes, number_of_classes))

@@ -7,7 +7,10 @@ def build_optimizer(config):
     name = config['name']
     
     # params for Keras optimizers
-    params = config['params']
+    if 'params' in config:
+        params = config['params']
+    else:
+        params = { }
 
     if name == 'nadam':
         return Nadam(**params)
