@@ -1,29 +1,23 @@
 
 from utils.util import get_sub_dirs, pad_string
 from utils.metrics import *
-from utils.writers import *
+from utils.logging import *
 from utils.constants import TEMP_PATH
 
 import tensorflow as tf
 import numpy as np
 import os
 
-missclassified = {}
+# file paths
+kfold_split_file_path = ''
+
 
 def evaluate(model, config, validation_directory, experiment, file_identifier):
 
-    # get file names
-    results_file_name = f'{file_identifier}_{config["summary_files"]["split_evaluation_summary"]}'
-    missclassification_file_name = f'{file_identifier}_{config["summary_files"]["missclassification_summary"]}'
-
-    # get file paths
-    results_path = os.path.join(TEMP_PATH, results_file_name)
-    missclassification_path = os.path.join(TEMP_PATH, missclassification_file_name)
+    missclassified = {}
 
     # get number of classes in model
     number_of_classes = config['dataset']['number_of_classes']
-
-    table_size = config['misc']['table_size']
 
     # get class directory names from validation directory
     class_names = get_sub_dirs(validation_directory)
@@ -80,16 +74,17 @@ def evaluate(model, config, validation_directory, experiment, file_identifier):
 
     # save missclassified images to file together with class
     for class_name in missclassified:
-        write_class_missclassification_files(missclassification_path, missclassified[class_name], class_name, table_size)
+        log_misclassifications( f'{ class_name }_misclassififed.txt', missclassified[class_name], class_name )
+        experiment.add_artifact( f'../tmp/{ class_name }_misclassififed.txt' )
 
     # write kvasir legend to results file
-    write_kvasir_legend(results_path, table_size)
+    log_class_legend('split_evaluation_summary.txt', class_names)
 
     # write confusion table to results file
-    write_confusion_table(results_path, confusion, table_size)
+    log_confusion_table('split_evaluation_summary.txt', confusion)
 
     # write model summary to results file
-    write_model_summary(results_path, metrics, table_size)
+    log_model_results('split_evaluation_summary.txt', metrics, file_identifier)
 
     # write summaries for each class
     for class_name in class_names:
@@ -98,11 +93,13 @@ def evaluate(model, config, validation_directory, experiment, file_identifier):
         class_index = label_index[class_name]
 
         # write class summary to results file
-        write_class_summary(results_path, metrics, class_name, class_index, table_size)
+        log_class_results(f'{ class_name }_results.txt', metrics, class_name, class_index)
+
+        # add results to experiment
+        experiment.add_artifact(f'../tmp/{ class_name }_results.txt')
 
     # add evaluation files to experiment
-    experiment.add_artifact(results_path)
-    experiment.add_artifact(missclassification_path)
+    experiment.add_artifact('../tmp/split_evaluation_summary.txt')
 
     # return evaluation metrics
     return {

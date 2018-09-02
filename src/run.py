@@ -6,7 +6,7 @@ from sacred.utils import apply_backspaces_and_linefeeds
 from sacred.observers import FileStorageObserver
 
 from utils.util import prepare_dataset, split_data, ModelHelper
-from utils.writers import *
+from utils.logging import *
 from utils.constants import TEMP_PATH
 
 from train import train
@@ -24,6 +24,10 @@ config = None
 config_path = None
 experiment_name = None
 experiment_path = None
+
+# file paths
+full_kfold_summary_file_path = 'kfold_summary.txt'
+all_results_file_path = 'all_results.txt'
 
 # reset tensorflow graph
 tf.reset_default_graph()
@@ -45,19 +49,13 @@ def run():
     experiment.add_artifact(config_path)
 
     if config['dataset'].get('link', True):
-        dataset_config_path = f'../configs/datasets/{config['dataset']["link"]}''
+        dataset_config_path = f'../configs/datasets/{config["dataset"]["link"]}'
         experiment.add_artifact(dataset_config_path)
         config['dataset'].update( json.load( open( dataset_config_path ) ) )
 
     # import model builder
     model_builder_path = config['model']['build_file']
     model_builder = importlib.import_module(f'models.{model_builder_path}')
-
-    # TODO: make this dynamic
-    table_size = config['misc']['table_size']
-        
-    # kfold summary filename
-    model_summary_path = os.path.join(TEMP_PATH, 'model_evaluation_summary')
 
     # image dimensions for training and validation 
     image_width = config['image_processing']['image_width']
@@ -102,9 +100,12 @@ def run():
             extension_path = config['dataset']['validation_extension_path']
 
             for class_extension in os.listdir(extension_path):
+
                 class_path = os.path.join(extension_path, class_extension)
+                target_path = os.path.join(validation_directory, class_extension)
+
                 for filename in os.listdir(class_path):
-                    shutil.copy(os.path.join(class_path, filename), os.path.join(validation_directory, class_extension, filename))
+                    shutil.copy(os.path.join(class_path, filename), os.path.join(target_path, filename))
 
         # print training directories for sanity
         print(f'training on {training_directory}')
@@ -114,7 +115,7 @@ def run():
         if config['model'].get('load_model', False):
             model = load_model(config['model']['model_splits'][split_index])
         else: 
-            model = model_builder.build(config, config['dataset'])
+            model = model_builder.build(config)
 
         # train model and get last weigths
         if config['model'].get('train', True):
@@ -127,15 +128,17 @@ def run():
             print("Start fine tuning...")
 
             # load config link from config
-            fine_tuning_config = json.load(open(f'../configs/links/{config["fine_tuning"]["link"]}'))
+            fine_tuning_config_name = config['fine_tuning']['link']
+            fine_tuning_config_path = f'../configs/links/{fine_tuning_config_name}'
+            fine_tuning_config = json.load(open(fine_tuning_config_path))
 
             if fine_tuning_config['dataset'].get('link', True):
-                dataset_config_path = f'../configs/datasets/{fine_tuning_config['dataset']["link"]}'
-                experment.add_artifact( dataset_config_path )
+                dataset_config_path = f'../configs/datasets/{fine_tuning_config["dataset"]["link"]}'
+                experiment.add_artifact( dataset_config_path )
                 fine_tuning_config['dataset'].update( json.load(open( dataset_config_path ) ) )
 
             # add link config to experiment
-            experiment.add_artifact(f'../configs/links/{config["fine_tuning"]["link"]}')
+            experiment.add_artifact(fine_tuning_config_path)
 
             # train using new config
             model = train(model, fine_tuning_config, experiment, training_directory, validation_directory, f'fine_split_{split_index}') 
@@ -153,11 +156,11 @@ def run():
             print(key, results[key])
 
     # log results
-    cross_validation_log_path = log_cross_validation_results(results, experiment_name, folds)
-    log_to_results_comparisoin(results, experiment_name, folds)
+    log_cross_validation_results(full_kfold_summary_file_path, results, experiment_name, folds)
+    log_to_results_comparison(all_results_file_path, results, experiment_name, folds)
 
-    # add kfold summary to experiment
-    experiment.add_artifact(cross_validation_log_path)
+    experiment.add_artifact(full_kfold_summary_file_path)
+    experiment.add_artifact(all_results_file_path)
 
 if __name__ == '__main__':
     
