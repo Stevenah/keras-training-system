@@ -1,8 +1,6 @@
-
 from utils.util import get_sub_dirs, pad_string
 from utils.metrics import *
 from utils.logging import *
-from utils.constants import TEMP_PATH
 
 import tensorflow as tf
 import numpy as np
@@ -10,7 +8,6 @@ import os
 
 # file paths
 kfold_split_file_path = ''
-
 
 def evaluate(model, config, validation_directory, experiment, file_identifier):
 
@@ -25,7 +22,7 @@ def evaluate(model, config, validation_directory, experiment, file_identifier):
     # get keras labels in label-index format
     label_index = { class_name: index for index, class_name in enumerate(class_names) }
 
-    # praper confusion table
+    # prepare confusion table
     confusion = np.zeros((number_of_classes, number_of_classes))
 
     # iterate over each class name

@@ -4,7 +4,6 @@ from keras.callbacks import ModelCheckpoint, EarlyStopping, Callback, TensorBoar
 from utils.util import save_artifact
 from utils.builders import build_optimizer
 from utils.plotters import plot_accuracy, plot_loss
-from utils.constants import TEMP_PATH
 
 import tensorflow as tf
 import importlib
@@ -27,17 +26,17 @@ def train(model, config, experiment, training_directory, validation_directory, f
     loss_plot_file = f'{file_identifier}_loss_plot.png'
 
     # plot file paths
-    accuracy_plot_path = os.path.join(TEMP_PATH, accuracy_plot_file)
-    loss_plot_path = os.path.join(TEMP_PATH, loss_plot_file)
+    accuracy_plot_path = os.path.join('../tmp', accuracy_plot_file)
+    loss_plot_path = os.path.join('../tmp', loss_plot_file)
 
     # weights/model file paths
-    model_path = os.path.join(TEMP_PATH, model_file)
-    weights_path = os.path.join(TEMP_PATH, weights_file)
+    model_path = os.path.join('../tmp', model_file)
+    weights_path = os.path.join('../tmp', weights_file)
 
     # callbacks to be called after every epoch
     callbacks = [
         ModelCheckpoint(weights_path, monitor='val_acc', verbose=1, save_best_only=True),
-        TensorBoard(log_dir=os.path.join(TEMP_PATH, 'logs'), batch_size=8)
+        TensorBoard(log_dir=os.path.join('../tmp', 'logs'), batch_size=8)
     ]
 
     # number of splits in dataset
@@ -50,7 +49,7 @@ def train(model, config, experiment, training_directory, validation_directory, f
     metrics = [ 'accuracy' ] 
 
     # set number of  training and validation samples
-    training_samples   = samples - (samples // split) # number of training samples in dataset
+    training_samples = samples - (samples // split) # number of training samples in dataset
     validation_samples = samples // split # number of validation samples in dataset
 
     # set number of epochs

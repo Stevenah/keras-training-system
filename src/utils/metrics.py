@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import numpy as np
 
 def f1score(TP, TN, FP, FN):

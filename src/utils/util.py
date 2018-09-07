@@ -1,8 +1,8 @@
+#!/usr/bin/env python
+
 from keras.callbacks import Callback
 from keras.models import model_from_json
 from scipy.misc import imsave, imread, imresize
-
-from utils.constants import TEMP_PATH
 
 import numpy as np
 import tensorflow as tf
@@ -50,8 +50,8 @@ def merge_dict_of_lists(dict1, dict2):
   return dict((k, dict1.get(k, no) + dict2.get(k, no)) for k in keys)
 
 def prepare_dataset(split_dirs, split_index, split_total):
-    training_dir   = os.path.join(TEMP_PATH, 'training_data')
-    validation_dir = os.path.join(TEMP_PATH, 'validation_data')
+    training_dir   = os.path.join('../tmp', 'training_data')
+    validation_dir = os.path.join('../tmp', 'validation_data')
 
     if os.path.exists(validation_dir):
         shutil.rmtree(validation_dir)
@@ -143,13 +143,13 @@ def split_data_on_suffix(test_suffix, data_dir):
 def split_data(folds, data_dir):
     class_names = get_sub_dirs(data_dir)
 
-    if os.path.exists(TEMP_PATH):
-        shutil.rmtree(TEMP_PATH)
+    if os.path.exists('../tmp'):
+        shutil.rmtree('../tmp')
 
     split_dirs = []
 
     for index in range(folds):
-        split_dirs.append(os.path.join(TEMP_PATH, 'splits', f'split_{index}'))
+        split_dirs.append(os.path.join('../tmp', 'splits', f'split_{index}'))
 
     for class_name in class_names:
         class_dir = os.path.join(data_dir, class_name)

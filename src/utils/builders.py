@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from keras.optimizers import * 
 
 # build keras optimizer from given params config

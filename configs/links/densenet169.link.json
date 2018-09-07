@@ -1,16 +1,14 @@
 {
     "experiment": {
-        "name": "non_vgg16_fine_tuning_50_epochs"
+        "name": "medical_densenet_169"
     },
     "model": {
-        "name": "vgg-16",
-        "architecture": "vgg16",
-        "build_file": "vgg16_fine_tune",
-        "weights_file": "vgg16_weights.h5",
-        "model_file": "base_vgg16_fine_tune.h5"
+        "build_file": "densenet169_fine_tune",
+        "weights_file": "densenet169_weights.h5",
+        "model_file": "fine_densenet169_fine_tune.h5"
     },
     "dataset": {
-        "link": "kvasir.v2.json"
+        "link": "medical.combo.json"
     },
     "optimizer": {
         "name": "nadam"
@@ -29,7 +27,6 @@
         "validation_data_generator": "basic"
     },
     "fine_tuning": {
-        "enabled": true,
         "link": "vgg16.non.link.json"
     }
 }

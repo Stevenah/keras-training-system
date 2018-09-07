@@ -5,9 +5,10 @@ from sacred import Experiment
 from sacred.utils import apply_backspaces_and_linefeeds
 from sacred.observers import FileStorageObserver
 
+from keras.callbacks import ModelCheckpoint, EarlyStopping, Callback, TensorBoard
+
 from utils.util import prepare_dataset, split_data, ModelHelper
 from utils.logging import *
-from utils.constants import TEMP_PATH
 
 from train import train
 from evaluate import evaluate
@@ -121,9 +122,11 @@ def run():
         if config['model'].get('train', True):
             print("Start training...")
             model = train(model, config, experiment, training_directory, validation_directory, f'split_{split_index}')
+            evaluate(model_helper, config, validation_directory, experiment, f'split_{split_index}')
+
 
         # if fine tune, train model again on config link found in config
-        if config['fine_tuning']['enabled'] and config['model'].get('train', True): 
+        if config.get('fine_tuning', { }).get('link', False) and config['model'].get('train', True): 
             
             print("Start fine tuning...")
 
@@ -157,7 +160,7 @@ def run():
 
     # log results
     log_cross_validation_results(full_kfold_summary_file_path, results, experiment_name, folds)
-    log_to_results_comparison(all_results_file_path, results, experiment_name, folds)
+    log_to_results_comparison( results, experiment_name, folds)
 
     experiment.add_artifact(full_kfold_summary_file_path)
     experiment.add_artifact(all_results_file_path)
