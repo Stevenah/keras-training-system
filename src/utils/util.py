@@ -12,38 +12,6 @@ import os
 import cv2
 import shutil
 
-
-class ModelHelper():
-
-    def __init__(self, model, classes, width, height, channels):
-
-        self.model = model
-        self.graph = tf.get_default_graph()
-
-        self.labels = classes
-
-        self.image_width = width
-        self.image_height = height
-        self.image_channels = channels
-
-    def prepare_image(self, image):
-        image = imresize(image, (self.image_width, self.image_height, self.image_channels))
-        image = image.reshape(1, self.image_width, self.image_height, self.image_channels)
-        return image
-
-    def predict_from_path(self, path):
-        image = imread(path, mode='RGB')
-        image = self.prepare_image(image)
-        image = np.true_divide(image, 255.)
-        return self.predict_max(image)
-
-    def predict(self, image):
-        with self.graph.as_default():
-            return self.model.predict(image)[0]
-
-    def predict_max(self, image):
-        return np.argmax(self.predict(image))
-
 def merge_dict_of_lists(dict1, dict2):
   keys = set(dict1).union(dict2)
   no = []
@@ -70,33 +38,9 @@ def prepare_dataset(split_dirs, split_index, split_total):
 
     return training_dir, validation_dir
 
-def save_artifact(experiment, artifact, artifact_name):
-    with open(artifact_name, 'w') as f:
-        f.write(artifact)
-    experiment.add_artifact(artifact_name)
-    os.remove(artifact_name)
-
 def get_sub_dirs(path):
     root, *_ = os.walk(path)
     return root[1]
-
-class LogPerformance(Callback):
-
-    def __init__(self, experiment, filename):
-        self.filename = filename
-        self.experiment = experiment
-
-    def on_epoch_end(self, _, logs={}):
-        @self.experiment.capture
-        def log_performance(_run, logs):
-            if os.path.isfile(self.filename):
-                _run.add_artifact(self.filename)
-            _run.log_scalar("loss", float(logs.get('loss')))
-            _run.log_scalar("accuracy", float(logs.get('acc')))
-            _run.log_scalar("val_loss", float(logs.get('val_loss')))
-            _run.log_scalar("val_accuracy", float(logs.get('val_acc')))
-            _run.result = float(logs.get('val_acc'))
-        log_performance(logs=logs)
 
 def pad_string(string, size, fill=" ", edge="|"):
     return f'{edge}{string}{((size - len(string)) *  fill)}{edge}\n'

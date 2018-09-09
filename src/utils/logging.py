@@ -21,11 +21,6 @@ ADVANCED_METRICS = {
     'mcc': 'specificity'
 }
 
-
-# "model_evaluation_summary": "model_evaluation_summary.txt",
-# "split_evaluation_summary": "",
-# "missclassification_summary": "missclassification_summary.txt"
-
 TABLE_ROW_DIVIDER = '-'
 
 TEMP_DIRECTORY = '../tmp'

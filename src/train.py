@@ -1,7 +1,6 @@
 from keras import backend as K
 from keras.callbacks import ModelCheckpoint, EarlyStopping, Callback, TensorBoard
 
-from utils.util import save_artifact
 from utils.builders import build_optimizer
 from utils.plotters import plot_accuracy, plot_loss
 
@@ -11,8 +10,15 @@ import shutil
 import os
 
 # function for training a model given a configuration
-def train(model, config, experiment, training_directory, validation_directory, file_identifier):
+def train( model, config, experiment, training_directory=None,
+    validation_directory=None, file_identifier=None ):
+
+    if training_directory is None:
+        training_directory = config['dataset']['training_directory']
     
+    if validation_directory is None:
+        validation_directory = config['dataset']['validation_directory']    
+
     # extract model and weight file names
     weights_file_name = config['model']['weights_file']
     model_file_name = config['model']['model_file']
@@ -124,7 +130,9 @@ def train(model, config, experiment, training_directory, validation_directory, f
         epochs=epochs,
         validation_data=validation_generator,
         validation_steps=validation_steps,
-        callbacks=callbacks)
+        callbacks=callbacks,
+        workers=0,
+        use_multiprocessing=False)
 
     # plot loss
     plot_loss(history, loss_plot_path)

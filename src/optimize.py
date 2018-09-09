@@ -1,28 +1,22 @@
-from keras import backend as K 
-from keras.layers import Activation, Dropout, BatchNormalization, Dense
-from keras.callbacks import ModelCheckpoint, EarlyStopping, Callback, TensorBoard
-from keras.optimizers import Nadam
-
-from utils.util import get_sub_dirs, pad_string
-from utils.metrics import *
-from utils.logging import *
+import keras.backend as K
 
 from sacred import Experiment
 from sacred.utils import apply_backspaces_and_linefeeds
 from sacred.observers import FileStorageObserver
 
-from utils.util import prepare_dataset, split_data, ModelHelper
+from utils.util import prepare_dataset, split_data
+
+from train import train
+from evaluate import evaluate
+
+import tensorflow as tf
 
 import GPy
 import GPyOpt
 import functools
 import json
 import os
-import shutil
 import importlib
-
-import tensorflow as tf
-import numpy as np
 
 # reset tensorflow graph
 tf.reset_default_graph()
@@ -33,189 +27,56 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 # set dimension ordering to tensorflow
 K.set_image_dim_ordering('tf')
 
+# set bounds for hyperparameter optimization
+bounds = [
+    { 'name': 'learning_rate', 'type': 'continuous', 'domain': (0.0, 0.0006) }
+]
+
 def optimize( config ):
 
-    # set bounds for hyperparameter optimization
-    bounds = [
-        { 'name': 'freeze_layers', 'type': 'discrete', 'domain': range(0, 224) },
-        { 'name': 'learning_rate', 'type': 'continuous', 'domain': (0.0, 0.003) }
-    ]
-
-    op_function = functools.partial(run_model, config=config, experiment=experiment)
-
-    # build optimizer object
-    hyperparameter_optimizer = GPyOpt.methods.BayesianOptimization( f=op_function, domain=bounds )
-
     # optimize hyperparameters
+    op_function = functools.partial(run_model, config=config, experiment=experiment)
+    hyperparameter_optimizer = GPyOpt.methods.BayesianOptimization( f=op_function, domain=bounds )
     hyperparameter_optimizer.run_optimization( max_iter=10 )
 
+    # print best hyperparameters and achieved score
+    print(f'{ bounds[0]["name"] }: { hyperparameter_optimizer.x_opt[0] }')
+    print(f'optimized score: { hyperparameter_optimizer.fx_opt }')
+    
 def run_model( params, config, experiment ):
 
+    for index, param in enumerate(params):
+        print(f'{ bounds[index]["name"] } => { param }')
+    
+    # load dataset configuration
     if config['dataset'].get('link', True):
-        dataset_config_path = f'../configs/datasets/{config["dataset"]["link"]}'
+        dataset_config_path = f'../configs/datasets/{ config["dataset"]["link"] }'
         experiment.add_artifact(dataset_config_path)
         config['dataset'].update( json.load( open( dataset_config_path ) ) )
 
-    # prepare dataset
-    folds = config['dataset']['split']
-    data_directory = config['dataset']['path']
-    split_dirs = split_data(folds, data_directory)
+    # split dataset into k split
+    split_dirs = split_data(config['dataset']['split'], config['dataset']['path'])
+    
+    # build training and validation directory
     training_directory, validation_directory = prepare_dataset(split_dirs, 0, len(split_dirs))
 
-    config['dataset']['training_directory'] = training_directory
-    config['dataset']['validation_directory'] = validation_directory
-
+    # optionally load pre-trainied model
     if config['model'].get('load_model', False):
         model = load_model(config['model']['load_model'])
     else: 
-        model_builder_path = config['model']['build_file']
-        model_builder = importlib.import_module(f'models.{model_builder_path}')
+        model_builder = importlib.import_module(f'models.{ config["model"]["build_file"] }')
         model = model_builder.build(config)
 
-    model = train(params, model, config, experiment)
+    # modify config to use optimization parameters
+    config['hyper_parameters']['learning_rate'] = float(params[:, 0])
 
-    # set image dimensions
-    number_of_classes = config['dataset']['number_of_classes']
-    image_width = config['image_processing']['image_width']
-    image_height = config['image_processing']['image_height']
-    image_channels = config['image_processing']['image_channels']
+    # train model using optimized hyper parameters
+    model = train(model, config, experiment, training_directory, validation_directory, 'optimization')
 
-    model_helper = ModelHelper(model, number_of_classes, image_width, image_height, image_channels)
-
-    evaluation = evaluate(model_helper, config, experiment)
+    # evalaute model using standard metrics
+    evaluation = evaluate(model, config, experiment, validation_directory, 'optimization')
 
     return evaluation['f1']
-
-def train( params, model, config, experiment ):
-
-    validation_directory = config['dataset']['validation_directory']
-    training_directory = config['dataset']['training_directory']
-
-    # number of splits and samples in dataset
-    validation_split = config['dataset']['split']
-    dataset_samples = config['dataset']['samples']
-
-    # dynamic hyperparameters
-    freeze_layers = int(params[:, 0]) 
-    learning_rate = float(params[:, 1])
-
-    print(freeze_layers)
-
-    # static hyperparameters
-    epochs = config['hyper_parameters']['epochs']
-    patience = config['hyper_parameters']['patience']
-    batch_size = config['hyper_parameters']['batch_size']
-
-    # metrics to measure under training
-    metrics = [ 'accuracy' ]
-
-    # callbacks to be called after every epoch
-    callbacks = [
-        ModelCheckpoint('../tmp/weights.h5', monitor='val_acc', verbose=1, save_best_only=True),
-        TensorBoard(log_dir=os.path.join('../tmp', 'logs'), batch_size=batch_size)
-    ]
-
-    # set image dimensions
-    number_of_classes = config['dataset']['number_of_classes']
-    image_width = config['image_processing']['image_width']
-    image_height = config['image_processing']['image_height']
-    image_channels = config['image_processing']['image_channels']
-
-    # set number of  training and validation samples
-    training_samples = dataset_samples - (dataset_samples // validation_split)
-    validation_samples = dataset_samples // validation_split
-
-    # set training steps based on training sampels and batch size
-    training_steps = training_samples // batch_size   # number of training batches in one epoch
-    validation_steps = validation_samples // batch_size # number of validation batches in one epoch
-
-    optimizer = Nadam(
-        lr=learning_rate)
-
-    # build data generators
-    training_generator_file = config['image_processing']['training_data_generator']
-    validation_generator_file = config['image_processing']['validation_data_generator']
-    training_data_generator = importlib.import_module(f'generators.{training_generator_file}').train_data_generator
-    validation_data_generator = importlib.import_module(f'generators.{validation_generator_file}').validation_data_generator
-
-    # freeze layers based on freeze_layers parameter
-    for layer in model.layers[:freeze_layers]:
-        layer.trainable = False
-    for layer in model.layers[freeze_layers:]:
-        layer.trainable = True
-
-    # initialize training generator
-    training_generator = training_data_generator.flow_from_directory(
-        training_directory, target_size=(image_width, image_height),
-        batch_size=batch_size, class_mode='categorical', follow_links=True)
-
-    # initialize validation generator
-    validation_generator = validation_data_generator.flow_from_directory(
-        validation_directory, target_size=(image_width, image_height),
-        batch_size=batch_size, class_mode='categorical', follow_links=True)
-
-    # only set early stoppiang if patience is more than 0
-    if patience > 0:
-        callbacks.append(
-            EarlyStopping(
-                monitor='val_acc',
-                patience=patience,
-                verbose=1))
-
-    # print out the class indicies for sanity
-    print('train indicies: ', training_generator.class_indices)
-    print('validation indicies: ', validation_generator.class_indices)
-
-    # compile model
-    model.compile(
-        loss='categorical_crossentropy',
-        optimizer=optimizer,
-        metrics=metrics)
-
-    # train model and get training metrics
-    history = model.fit_generator(training_generator,
-        steps_per_epoch=training_steps,
-        epochs=epochs,
-        validation_data=validation_generator,
-        validation_steps=validation_steps,
-        callbacks=callbacks)
-
-    model.load_weights('../tmp/weights.h5')
-
-    return model
-
-
-def evaluate( model, config, experiment ):
-
-    validation_directory = config['dataset']['validation_directory']
-    number_of_classes = config['dataset']['number_of_classes']
-    
-    class_names = get_sub_dirs(validation_directory)
-    label_index = { class_name: index for index, class_name in enumerate(class_names) }
-    confusion = np.zeros((number_of_classes, number_of_classes))
-
-    for class_name in class_names:
-        print(f'Starting {class_name}')
-        class_dir = os.path.join(validation_directory, class_name)
-        for file_name in os.listdir(class_dir):
-            prediction = model.predict_from_path(os.path.join(class_dir, file_name))
-            confusion[prediction][label_index[class_name]] += 1
-
-    FP = confusion.sum(axis=0) - np.diag(confusion)  
-    FN = confusion.sum(axis=1) - np.diag(confusion)
-    TP = np.diag(confusion)
-    TN = confusion.sum() - (FP + FN + TP)
-
-    f1 = f1score(TP, TN, FP, FN)
-    rec = recall(TP, TN, FP, FN)
-    acc = accuracy(TP, TN, FP, FN)
-    prec = precision(TP, TN, FP, FN)
-    spec = specificity(TP, TN, FP, FN)
-    mcc = matthews_correlation_coefficient(TP, TN, FP, FN)
-
-    metrics = { 'FP': FP, 'FN': FN, 'TP': TP, 'TN': TN, 'f1': f1, 'rec': rec, 'acc': acc, 'prec': prec, 'spec': spec, 'mcc': mcc }
-
-    return metrics
 
 if __name__ == '__main__':
 
@@ -229,7 +90,7 @@ if __name__ == '__main__':
         config_path = f'../configs/optimization/{ config_file }'
 
         # load config file
-        config = json.load(open(config_path))
+        config = json.load( open( config_path ) )
 
         # get experiment path
         experiment_name = config['experiment']['name']

@@ -1,5 +1,4 @@
 from keras.preprocessing.image import ImageDataGenerator
-from keras.preprocessing.image import DirectoryIterator
 
 def preprocess_input(x):
     # 'RGB'->'BGR'

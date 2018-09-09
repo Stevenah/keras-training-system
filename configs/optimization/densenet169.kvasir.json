@@ -1,0 +1,29 @@
+{
+    "experiment": {
+        "name": "medical_densenet169"
+    },
+    "model": {
+        "build_file": "densenet169",
+        "model_file": "densenet169_model.h5",
+        "weights_file": "densenet169_weights.h5"
+    },
+    "dataset": {
+        "link": "lapgyn4.cataract.json"
+    },
+    "optimizer": {
+        "name": "nadam"
+    },
+    "hyper_parameters": {
+        "epochs": 1,
+        "batch_size": 32,
+        "freeze_layers": 0,
+        "patience": 15
+    },
+    "image_processing": {
+        "image_width": 224,
+        "image_height": 224,
+        "image_channels": 3,
+        "training_data_generator": "basic",
+        "validation_data_generator": "basic"
+    }
+}

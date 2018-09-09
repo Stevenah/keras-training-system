@@ -7,7 +7,7 @@ from sacred.observers import FileStorageObserver
 
 from keras.callbacks import ModelCheckpoint, EarlyStopping, Callback, TensorBoard
 
-from utils.util import prepare_dataset, split_data, ModelHelper
+from utils.util import prepare_dataset, split_data
 from utils.logging import *
 
 from train import train
@@ -50,21 +50,13 @@ def run():
     experiment.add_artifact(config_path)
 
     if config['dataset'].get('link', True):
-        dataset_config_path = f'../configs/datasets/{config["dataset"]["link"]}'
+        dataset_config_path = f'../configs/datasets/{ config["dataset"]["link"] }'
         experiment.add_artifact(dataset_config_path)
         config['dataset'].update( json.load( open( dataset_config_path ) ) )
 
     # import model builder
     model_builder_path = config['model']['build_file']
     model_builder = importlib.import_module(f'models.{model_builder_path}')
-
-    # image dimensions for training and validation 
-    image_width = config['image_processing']['image_width']
-    image_height = config['image_processing']['image_height']
-    image_channels = config['image_processing']['image_channels']
-    
-    # numer of classes in dataset
-    number_of_classes = config['dataset']['number_of_classes']
 
     # dataset specific variables
     folds = config['dataset']['split']
@@ -122,7 +114,7 @@ def run():
         if config['model'].get('train', True):
             print("Start training...")
             model = train(model, config, experiment, training_directory, validation_directory, f'split_{split_index}')
-            evaluate(model_helper, config, validation_directory, experiment, f'split_{split_index}')
+            evaluate(model, config, experiment, validation_directory, f'split_{split_index}')
 
 
         # if fine tune, train model again on config link found in config
@@ -146,12 +138,9 @@ def run():
             # train using new config
             model = train(model, fine_tuning_config, experiment, training_directory, validation_directory, f'fine_split_{split_index}') 
 
-        # wrap model in model helper before evaluation for ease of image preprocessing
-        model_helper = ModelHelper(model, number_of_classes, image_width, image_height, image_channels)
-
         # evaluate train model and get metrics
         print("Start evaluation...")
-        split_results = evaluate(model_helper, config, validation_directory, experiment, f'split_{split_index}') 
+        split_results = evaluate(model, config, experiment, validation_directory, f'split_{split_index}') 
 
         # merge split results with total results
         for key in split_results:

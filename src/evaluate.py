@@ -9,12 +9,18 @@ import os
 # file paths
 kfold_split_file_path = ''
 
-def evaluate(model, config, validation_directory, experiment, file_identifier):
+
+def evaluate(model, config, experiment, validation_directory, file_identifier):
 
     missclassified = {}
 
     # get number of classes in model
     number_of_classes = config['dataset']['number_of_classes']
+
+    # image dimensions
+    image_width = config['image_processing']['image_width']
+    image_height = config['image_processing']['image_height']
+    image_channels = config['image_processing']['image_channels']
 
     # get class directory names from validation directory
     class_names = get_sub_dirs(validation_directory)
@@ -34,12 +40,20 @@ def evaluate(model, config, validation_directory, experiment, file_identifier):
 
         # iterate over each image in class directory
         for file_name in os.listdir(class_dir):
-            
-            # use model to classify image
-            prediction = model.predict_from_path(os.path.join(class_dir, file_name))
 
-            # check prediction against ground truth, i.e, if it equals
-            # the class directory name
+            # models class prediction for image
+            prediction = None
+
+            # process image before passing it through the network
+            image = imread(os.path.join(class_dir, file_name), mode='RGB')
+            image = imresize(image, (image_width, image_height, image_channels))
+            image = image.reshape(1, image_width, image_height, image_channels)
+            image = np.true_divide(image, 255.)
+
+            with tf.get_default_graph():
+                prediction = np.argmax(model.predict(image)[0])
+
+            # check prediction against ground truth, i.e, if it equals the class directory name
             if (prediction != label_index[class_name]):
 
                 # initialize empty list of fist missclassified of class
