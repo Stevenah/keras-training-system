@@ -29,10 +29,14 @@ K.set_image_dim_ordering('tf')
 
 # set bounds for hyperparameter optimization
 bounds = [
-    { 'name': 'learning_rate', 'type': 'continuous', 'domain': (0.0, 0.0006) }
+    { 'name': 'learning_rate', 'type': 'continuous', 'domain': (0.0, 0.0006) },
+    { 'name': 'freeze_layers', 'type': 'discrete', 'domain': range(0, 594) }
 ]
 
-def optimize( config ):
+def optimize( config, config_path=None ):
+
+    if config_path is not None:
+        experiment.add_artifact( config_path )
 
     # optimize hyperparameters
     op_function = functools.partial(run_model, config=config, experiment=experiment)
@@ -40,14 +44,21 @@ def optimize( config ):
     hyperparameter_optimizer.run_optimization( max_iter=10 )
 
     # print best hyperparameters and achieved score
-    print(f'{ bounds[0]["name"] }: { hyperparameter_optimizer.x_opt[0] }')
+    for index, param in enumerate(bounds):
+        print(f'{ bounds[index]["name"] }: { hyperparameter_optimizer.x_opt[index] }')
+
     print(f'optimized score: { hyperparameter_optimizer.fx_opt }')
     
 def run_model( params, config, experiment ):
 
-    for index, param in enumerate(params):
+    file_identifier = []
+
+    for index, param in enumerate(params[0]):
         print(f'{ bounds[index]["name"] } => { param }')
+        file_identifier.extend((bounds[index]['name'], str(param)))
     
+    file_identifier = '_'.join(file_identifier)
+
     # load dataset configuration
     if config['dataset'].get('link', True):
         dataset_config_path = f'../configs/datasets/{ config["dataset"]["link"] }'
@@ -69,25 +80,26 @@ def run_model( params, config, experiment ):
 
     # modify config to use optimization parameters
     config['hyper_parameters']['learning_rate'] = float(params[:, 0])
+    config['hyper_parameters']['freeze_layers'] = int(params[:, 1])
 
     # train model using optimized hyper parameters
-    model = train(model, config, experiment, training_directory, validation_directory, 'optimization')
+    model = train(model, config, experiment, training_directory, validation_directory, file_identifier)
 
     # evalaute model using standard metrics
-    evaluation = evaluate(model, config, experiment, validation_directory, 'optimization')
+    evaluation = evaluate(model, config, experiment, validation_directory, file_identifier)
 
     return evaluation['f1']
 
 if __name__ == '__main__':
 
     # list configs in active directory
-    configs = os.listdir( '../configs/optimization' )
+    configs = os.listdir( '../configs/active' )
 
     # iterate over each config and perform experiment
     for config_file in configs:
 
         # set config path
-        config_path = f'../configs/optimization/{ config_file }'
+        config_path = f'../configs/active/{ config_file }'
 
         # load config file
         config = json.load( open( config_path ) )
@@ -102,7 +114,7 @@ if __name__ == '__main__':
         experiment.observers.append(FileStorageObserver.create(experiment_path))
 
         def wrapper():
-            return optimize(config)
+            return optimize(config, config_path)
 
         # run experiment
         experiment.automain(wrapper)

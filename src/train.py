@@ -39,9 +39,14 @@ def train( model, config, experiment, training_directory=None,
     model_path = os.path.join('../tmp', model_file)
     weights_path = os.path.join('../tmp', weights_file)
 
+    # set patience (number of epochs where val_acc does not improve before stopping)
+    patience = config['hyper_parameters'].get('patience', 0)
+    baseline = config['hyper_parameters'].get('baseline', 0)
+    monitor = config['hyper_parameters'].get('monitor', 'val_acc')
+
     # callbacks to be called after every epoch
     callbacks = [
-        ModelCheckpoint(weights_path, monitor='val_acc', verbose=1, save_best_only=True),
+        ModelCheckpoint(weights_path, monitor=monitor, verbose=1, save_best_only=True),
         TensorBoard(log_dir=os.path.join('../tmp', 'logs'), batch_size=8)
     ]
 
@@ -66,9 +71,6 @@ def train( model, config, experiment, training_directory=None,
 
     # set number of layers to freeze (not train)
     freeze_layers = config['hyper_parameters']['freeze_layers']
-
-    # set patience (number of epochs where val_acc does not improve before stopping)
-    patience = config['hyper_parameters']['patience']
 
     # number of classes in dataset
     number_of_classes = config['dataset']['number_of_classes']
@@ -112,7 +114,11 @@ def train( model, config, experiment, training_directory=None,
     if patience > 0:
         
         # append early stopping to callbacks
-        callbacks.append(EarlyStopping(monitor='val_acc', patience=patience, verbose=0))
+        callbacks.append(EarlyStopping(
+            monitor=monitor,
+            patience=patience,
+            verbose=0,
+            baseline=baseline))
 
     # print out the class indicies for sanity
     print('train indicies: ', training_generator.class_indices)

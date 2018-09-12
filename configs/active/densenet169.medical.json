@@ -3,12 +3,12 @@
         "name": "medical_densenet169"
     },
     "model": {
-        "build_file": "densenet169",
+        "build_file": "densenet169_fine_tune",
         "model_file": "densenet169_model.h5",
         "weights_file": "densenet169_weights.h5"
     },
     "dataset": {
-        "link": "lapgyn4.cataract.json"
+        "link": "medico.json"
     },
     "optimizer": {
         "name": "nadam"
@@ -17,7 +17,9 @@
         "epochs": 50,
         "batch_size": 32,
         "freeze_layers": 0,
-        "patience": 15
+        "patience": 15,
+        "baseline": 0.50,
+        "monitor": "val_acc"
     },
     "image_processing": {
         "image_width": 224,

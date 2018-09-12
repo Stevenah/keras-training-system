@@ -2,6 +2,8 @@ from utils.util import get_sub_dirs, pad_string
 from utils.metrics import *
 from utils.logging import *
 
+from scipy.misc import imread, imsave, imresize
+
 import tensorflow as tf
 import numpy as np
 import os
@@ -50,7 +52,7 @@ def evaluate(model, config, experiment, validation_directory, file_identifier):
             image = image.reshape(1, image_width, image_height, image_channels)
             image = np.true_divide(image, 255.)
 
-            with tf.get_default_graph():
+            with tf.get_default_graph().as_default():
                 prediction = np.argmax(model.predict(image)[0])
 
             # check prediction against ground truth, i.e, if it equals the class directory name
