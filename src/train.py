@@ -19,13 +19,9 @@ def train( model, config, experiment, training_directory=None,
     if validation_directory is None:
         validation_directory = config['dataset']['validation_directory']    
 
-    # extract model and weight file names
-    weights_file_name = config['model']['weights_file']
-    model_file_name = config['model']['model_file']
-
     # get file path
-    weights_file = f'{file_identifier}_{weights_file_name}'
-    model_file = f'{file_identifier}_{model_file_name}'
+    weights_file = f'{file_identifier}_{config["experiment"]["name"]}_weights.h5'
+    model_file = f'{file_identifier}_{config["experiment"]["name"]}_model.h5'
 
     # get plot file names
     accuracy_plot_file = f'{file_identifier}_accuracy_plot.png'

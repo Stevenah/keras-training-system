@@ -1,25 +1,28 @@
 {
     "experiment": {
-        "name": "medical_densenet169"
+        "name": "densenet169_medical_transfer_medico"
     },
     "model": {
-        "build_file": "densenet169_fine_tune",
-        "model_file": "densenet169_model.h5",
-        "weights_file": "densenet169_weights.h5"
+        "build_file": "densenet169_medical_with_reg",
+        "model_file": "/home/steven/Models/densenet169_medical_combo_model_85_val_acc.h5"
     },
     "dataset": {
         "link": "medico.json"
     },
     "optimizer": {
-        "name": "nadam"
+        "name": "sgd",
+        "params": {
+            "lr": 0e-3,
+            "momentum": 0.5,
+            "nesterov": true,
+            "decay":1e-6
+        }
     },
     "hyper_parameters": {
         "epochs": 50,
-        "batch_size": 32,
+        "batch_size": 16,
         "freeze_layers": 0,
-        "patience": 15,
-        "baseline": 0.50,
-        "monitor": "val_acc"
+        "patience": 5
     },
     "image_processing": {
         "image_width": 224,

@@ -1,20 +1,24 @@
 {
     "experiment": {
-        "name": "medical_vgg16"
+        "name": "densenet169_medical_transfer_medico"
     },
     "model": {
-        "build_file": "vgg16",
-        "weights_file": "vgg16_weights.h5",
-        "model_file": "base_densenet169_fine_tune.h5"
+        "build_file": "densenet169_medical",
+        "model_file": "/home/steven/Models/densenet169_medical_combo_model_85_val_acc.h5"
     },
     "dataset": {
-        "link": "medical.combo.json"
+        "link": "medico.json"
     },
     "optimizer": {
-        "name": "nadam"
+        "name": "sgd",
+        "params": {
+            "nesterov": false,
+            "lr": 0.001,
+            "momentum": 0.9
+        }
     },
     "hyper_parameters": {
-        "epochs": 1,
+        "epochs": 150,
         "batch_size": 16,
         "freeze_layers": 0,
         "patience": 5
@@ -25,9 +29,5 @@
         "image_channels": 3,
         "training_data_generator": "basic",
         "validation_data_generator": "basic"
-    },
-    "fine_tuning": {
-        "enabled": false,
-        "link": "vgg16.link.json"
     }
 }

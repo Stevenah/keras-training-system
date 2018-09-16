@@ -1,11 +1,9 @@
 from keras import backend as K
-from keras.models import load_model
+import tensorflow as tf
 
 from sacred import Experiment
 from sacred.utils import apply_backspaces_and_linefeeds
 from sacred.observers import FileStorageObserver
-
-from keras.callbacks import ModelCheckpoint, EarlyStopping, Callback, TensorBoard
 
 from utils.util import prepare_dataset, split_data
 from utils.logging import *
@@ -13,21 +11,16 @@ from utils.logging import *
 from train import train
 from evaluate import evaluate
 
-import tensorflow as tf
-
 import os
 import json
 import shutil
 import importlib
 
 # initialize globals
-config = None
-config_path = None
 experiment_name = None
-experiment_path = None
 
 # file paths
-full_kfold_summary_file_path = 'kfold_summary.txt'
+full_kfold_summary_file_path = '../tmp/kfold_summary.txt'
 all_results_file_path = 'all_results.txt'
 
 # reset tensorflow graph
@@ -40,11 +33,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 K.set_image_dim_ordering('tf')
 
 # main run function
-def run():
-    
-    # declare global variables
-    global config
-    global config_path
+def run( config, config_path ):
 
     # add config file to experiment
     experiment.add_artifact(config_path)
@@ -54,10 +43,6 @@ def run():
         experiment.add_artifact(dataset_config_path)
         config['dataset'].update( json.load( open( dataset_config_path ) ) )
 
-    # import model builder
-    model_builder_path = config['model']['build_file']
-    model_builder = importlib.import_module(f'models.{model_builder_path}')
-
     # dataset specific variables
     folds = config['dataset']['split']
     data_directory = config['dataset']['path']
@@ -66,20 +51,13 @@ def run():
     split_dirs = split_data(folds, data_directory)
 
     # total results dictionary
-    results = {
-        'f1': [],
-        'rec': [],
-        'acc': [],
-        'mcc': [],
-        'prec': [],
-        'spec': []
-    }
+    results = { 'f1': [], 'rec': [], 'acc': [], 'mcc': [], 'prec': [], 'spec': [] }
 
     # iterate over each dataset split
     for split_index in range(len(split_dirs)):
         
         # print current validation split index
-        print(f'start validating on split {split_index}')
+        print(f'start validating on split { split_index }')
         
         # restart keras session
         K.clear_session() 
@@ -104,18 +82,27 @@ def run():
         print(f'training on {training_directory}')
         print(f'validation on {validation_directory}')
         
-        # load model from model file or build it using a build file.
-        if config['model'].get('load_model', False):
-            model = load_model(config['model']['model_splits'][split_index])
-        else: 
-            model = model_builder.build(config)
+        # import model
+        model_builder_path = config['model']['build_file']
+        model_builder = importlib.import_module(f'models.{model_builder_path}')
+
+        # build model using importet model builder
+        model = model_builder.build(config)
+
+        # file identifier to distinguish between split logs
+        file_identifier = split_index
 
         # train model and get last weigths
         if config['model'].get('train', True):
+            
             print("Start training...")
-            model = train(model, config, experiment, training_directory, validation_directory, f'split_{split_index}')
-            evaluate(model, config, experiment, validation_directory, f'split_{split_index}')
 
+            model = train( model,
+                config=config,
+                experiment=experiment,
+                training_directory=training_directory,
+                validation_directory=validation_directory,
+                file_identifier=f'split_{ file_identifier }' )
 
         # if fine tune, train model again on config link found in config
         if config.get('fine_tuning', { }).get('link', False) and config['model'].get('train', True): 
@@ -123,24 +110,32 @@ def run():
             print("Start fine tuning...")
 
             # load config link from config
-            fine_tuning_config_name = config['fine_tuning']['link']
-            fine_tuning_config_path = f'../configs/links/{fine_tuning_config_name}'
+            fine_tuning_config_path = f'../configs/links/{ config["fine_tuning"]["link"] }'
             fine_tuning_config = json.load(open(fine_tuning_config_path))
 
             if fine_tuning_config['dataset'].get('link', True):
-                dataset_config_path = f'../configs/datasets/{fine_tuning_config["dataset"]["link"]}'
+                dataset_config_path = f'../configs/datasets/{ fine_tuning_config["dataset"]["link"] }'
                 experiment.add_artifact( dataset_config_path )
                 fine_tuning_config['dataset'].update( json.load(open( dataset_config_path ) ) )
 
             # add link config to experiment
             experiment.add_artifact(fine_tuning_config_path)
 
-            # train using new config
-            model = train(model, fine_tuning_config, experiment, training_directory, validation_directory, f'fine_split_{split_index}') 
+            # train using fine tuning config
+            model = train( model,
+                config=fine_tuning_config,
+                experiment=experiment,
+                training_directory=training_directory,
+                validation_directory=validation_directory, 
+                file_identifier=f'fine_split_{ file_identifier }' ) 
 
         # evaluate train model and get metrics
         print("Start evaluation...")
-        split_results = evaluate(model, config, experiment, validation_directory, f'split_{split_index}') 
+        split_results = evaluate( model,
+            config=config,
+            experiment=experiment,
+            validation_directory=validation_directory,
+            file_identifier=f'split_{ file_identifier }' ) 
 
         # merge split results with total results
         for key in split_results:
@@ -163,19 +158,23 @@ if __name__ == '__main__':
     for config_file in configs:
 
         # set config path
-        config_path = f'../configs/active/{config_file}'
+        config_path = f'../configs/active/{ config_file }'
 
         # load config file
         config = json.load(open(config_path))
 
         # get experiment path
         experiment_name = config['experiment']['name']
-        experiment_path = f'../experiments/{experiment_name}'
+        experiment_path = f'../experiments/{ experiment_name }'
 
         # initialize experiment
         experiment = Experiment(experiment_name)
         experiment.captured_out_filter = apply_backspaces_and_linefeeds
         experiment.observers.append(FileStorageObserver.create(experiment_path))
 
+        # wrap run function (sacred reasons)
+        def wrapper():
+            run( config, config_path )
+
         # run experiment
-        experiment.automain(run)
+        experiment.automain( wrapper )

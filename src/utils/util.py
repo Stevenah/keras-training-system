@@ -18,7 +18,7 @@ def merge_dict_of_lists(dict1, dict2):
   return dict((k, dict1.get(k, no) + dict2.get(k, no)) for k in keys)
 
 def prepare_dataset(split_dirs, split_index, split_total):
-    training_dir   = os.path.join('../tmp', 'training_data')
+    training_dir = os.path.join('../tmp', 'training_data')
     validation_dir = os.path.join('../tmp', 'validation_data')
 
     if os.path.exists(validation_dir):

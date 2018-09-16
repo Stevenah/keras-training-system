@@ -12,7 +12,7 @@ import os
 kfold_split_file_path = ''
 
 
-def evaluate(model, config, experiment, validation_directory, file_identifier):
+def evaluate(model, config, experiment, validation_directory, file_identifier=''):
 
     missclassified = {}
 
@@ -26,6 +26,7 @@ def evaluate(model, config, experiment, validation_directory, file_identifier):
 
     # get class directory names from validation directory
     class_names = get_sub_dirs(validation_directory)
+    class_names.sort()
 
     # get keras labels in label-index format
     label_index = { class_name: index for index, class_name in enumerate(class_names) }
@@ -74,21 +75,25 @@ def evaluate(model, config, experiment, validation_directory, file_identifier):
     TP = np.diag(confusion)
     TN = confusion.sum() - (FP + FN + TP)
 
+    print ( f"True Positives: { TP }" )
+    print ( f"True Negatives: { TN }" )
+    print ( f"False Positives: { FP }" )
+    print ( f"False Positives: { FN }" )
+
     # calculate metrics based on FP, FN, TP and TN
-    f1 = f1score(TP, TN, FP, FN)
-    rec = recall(TP, TN, FP, FN)
-    acc = accuracy(TP, TN, FP, FN)
-    prec = precision(TP, TN, FP, FN)
-    spec = specificity(TP, TN, FP, FN)
-    mcc = matthews_correlation_coefficient(TP, TN, FP, FN)
+    f1 = np.nan_to_num(f1score(TP, TN, FP, FN))
+    rec = np.nan_to_num(recall(TP, TN, FP, FN))
+    acc = np.nan_to_num(accuracy(TP, TN, FP, FN))
+    prec = np.nan_to_num(precision(TP, TN, FP, FN))
+    spec = np.nan_to_num(specificity(TP, TN, FP, FN))
+    mcc = np.nan_to_num(matthews_correlation_coefficient(TP, TN, FP, FN))
 
     # bundle metrics into dictionary
     metrics = { 'FP': FP, 'FN': FN, 'TP': TP, 'TN': TN, 'f1': f1, 'rec': rec, 'acc': acc, 'prec': prec, 'spec': spec, 'mcc': mcc }
 
     # save missclassified images to file together with class
     for class_name in missclassified:
-        log_misclassifications( f'{ class_name }_misclassififed.txt', missclassified[class_name], class_name )
-        experiment.add_artifact( f'../tmp/{ class_name }_misclassififed.txt' )
+        log_misclassifications( missclassified[class_name], class_name )
 
     # write kvasir legend to results file
     log_class_legend('split_evaluation_summary.txt', class_names)
@@ -105,14 +110,15 @@ def evaluate(model, config, experiment, validation_directory, file_identifier):
         # class index
         class_index = label_index[class_name]
 
-        # write class summary to results file
-        log_class_results(f'{ class_name }_results.txt', metrics, class_name, class_index)
+        class_metrics = { key: value[class_index] for key, value in metrics.items() }
 
-        # add results to experiment
-        experiment.add_artifact(f'../tmp/{ class_name }_results.txt')
+        # write class summary to results file
+        log_class_results( class_metrics, class_name, class_index)
 
     # add evaluation files to experiment
-    experiment.add_artifact('../tmp/split_evaluation_summary.txt')
+    experiment.add_artifact( '../tmp/split_evaluation_summary.txt' )
+    experiment.add_artifact( '../tmp/class_misclassififed.txt' )
+    experiment.add_artifact( '../tmp/class_results.txt' )
 
     # return evaluation metrics
     return {

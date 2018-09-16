@@ -1,23 +1,27 @@
 {
     "experiment": {
-        "name": "medical_densenet169"
+        "name": "densenet169_imagenet_transfer_medico_with_regularization"
     },
     "model": {
         "build_file": "densenet169",
-        "model_file": "densenet169_model.h5",
-        "weights_file": "densenet169_weights.h5"
+        "weights": "imagenet"
     },
     "dataset": {
-        "link": "lapgyn4.cataract.json"
+        "link": "medico.json"
     },
     "optimizer": {
-        "name": "nadam"
+        "name": "sgd",
+        "params": {
+            "nesterov": false,
+            "lr": 0.001,
+            "momentum": 0.9
+        }
     },
     "hyper_parameters": {
-        "epochs": 1,
-        "batch_size": 32,
+        "epochs": 150,
+        "batch_size": 16,
         "freeze_layers": 0,
-        "patience": 15
+        "patience": 5
     },
     "image_processing": {
         "image_width": 224,
