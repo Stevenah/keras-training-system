@@ -1,6 +1,6 @@
 {
     "experiment": {
-        "name": "densenet169_medical_transfer_medico_with_reg"
+        "name": "densenet169_medical_transfer_medico_with_regularization"
     },
     "model": {
         "build_file": "densenet169_medical_with_reg",
@@ -13,15 +13,15 @@
         "name": "sgd",
         "params": {
             "nesterov": true,
-            "momentum": 0.5,
-            "decay":1e-6
+            "lr": 0.001,
+            "momentum": 0.9
         }
     },
     "hyper_parameters": {
-        "epochs": 25,
-        "batch_size": 16,
-        "freeze_layers": 594,
-        "patience": 5
+        "epochs": 150,
+        "batch_size": 32,
+        "freeze_layers": 0,
+        "patience": 15
     },
     "image_processing": {
         "image_width": 224,
@@ -29,8 +29,5 @@
         "image_channels": 3,
         "training_data_generator": "basic",
         "validation_data_generator": "basic"
-    },
-    "fine_tuning": {
-        "link": "densenet169.medical.transfer.medico.link.json"
     }
 }

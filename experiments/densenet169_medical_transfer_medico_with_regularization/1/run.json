@@ -1,11 +1,7 @@
 {
   "artifacts": [
-    "densenet169.imagenet.transfer.medico.w.reg.json",
-    "medico.json",
-    "split_0_accuracy_plot.png",
-    "split_0_loss_plot.png",
-    "split_0_densenet169_imagenet_transfer_medico_with_regularization_model.h5",
-    "split_evaluation_summary.txt"
+    "densenet169.medical.transfer.medico.w.reg.json",
+    "medico.json"
   ],
   "command": "wrapper",
   "experiment": {
@@ -17,7 +13,7 @@
       "tensorflow-gpu==1.10.1"
     ],
     "mainfile": "run.py",
-    "name": "densenet169_imagenet_transfer_medico_with_regularization",
+    "name": "densenet169_medical_transfer_medico_with_regularization",
     "repositories": [],
     "sources": [
       [
@@ -42,7 +38,7 @@
       ]
     ]
   },
-  "heartbeat": "2018-09-16T20:33:53.152841",
+  "heartbeat": "2018-09-16T22:13:23.100158",
   "host": {
     "ENV": {},
     "cpu": "Intel(R) Core(TM) i7-7700K CPU @ 4.20GHz",
@@ -92,7 +88,6 @@
   },
   "resources": [],
   "result": null,
-  "start_time": "2018-09-16T19:40:13.925823",
-  "status": "INTERRUPTED",
-  "stop_time": "2018-09-16T20:53:00.732002"
+  "start_time": "2018-09-16T22:13:13.096875",
+  "status": "RUNNING"
 }
