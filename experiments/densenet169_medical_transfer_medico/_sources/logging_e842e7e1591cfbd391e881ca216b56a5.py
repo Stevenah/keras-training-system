@@ -80,8 +80,7 @@ def log_confusion_table( file_name, confusion_matrix ):
     file_path = os.path.join( TEMP_DIRECTORY, file_name )
 
     table_header = 'Confusion table'
-
-    table_content = [ f' { row }' for row in np.array_str(confusion_matrix, max_line_width=1000000).split('\n') ]
+    table_content = [f' { np.array_str( row ) }' for row in confusion_matrix]
 
     write_table( file_path, table_header, table_content )
 
@@ -99,9 +98,9 @@ def log_to_results_comparison( results, experiment_name, folds ):
 
     write_table(file_path, table_header, table_content)
 
-def log_class_results( results, class_name, class_index ):
+def log_class_results( file_name, results, class_name, class_index ):
 
-    file_path = os.path.join(TEMP_DIRECTORY, 'class_results.txt')
+    file_path = os.path.join(TEMP_DIRECTORY, file_name)
 
     table_header = f'{class_name} summary'
     table_content = [ ]
@@ -109,22 +108,13 @@ def log_class_results( results, class_name, class_index ):
     division_point  = max(max(map(len, ADVANCED_METRICS)), max(map(len, BASIC_METRICS)))
 
     for key, metric in BASIC_METRICS.items():
-        table_content.append( f'{ metric.ljust(division_point) } | { results[key] }' )
+        table_content.append( f'{ metric.ljust(division_point) } | { np.mean(results[key]) }' )
 
     table_content.append(TABLE_ROW_DIVIDER)
 
     for key, metric in ADVANCED_METRICS.items():
-        table_content.append( f'{ metric.ljust(division_point) } | { results[key] }' )
+        table_content.append( f'{ metric.ljust(division_point) } | { np.mean(results[key]) }' )
         
-    write_table(file_path, table_header, table_content)
-
-def log_misclassifications( misclassifications, class_name):
-
-    file_path = os.path.join(TEMP_DIRECTORY, 'class_misclassifications.txt')
-
-    table_header = f'Misclassified {class_name}'
-    table_content = [ f' { miss_file_name }' for miss_file_name in misclassifications ]
-
     write_table(file_path, table_header, table_content)
 
 def log_model_results( file_name, results, model_name ):
@@ -137,6 +127,15 @@ def log_model_results( file_name, results, model_name ):
     division_point  = max(map(len, ADVANCED_METRICS))
 
     for key, metric in ADVANCED_METRICS.items():
-        table_content.append( f'{ metric.ljust( division_point ) } | { np.mean( np.mean(results[key]) ) }' )
+        table_content.append( f'{ metric.ljust( division_point ) } | { np.mean( results[key] ) }' )
+
+    write_table(file_path, table_header, table_content)
+
+def log_misclassifications( file_name, misclassifications, class_name):
+
+    file_path = os.path.join(TEMP_DIRECTORY, file_name)
+
+    table_header = f'Misclassified {class_name}'
+    table_content = [ f' {miss_file_name}' for miss_file_name in misclassifications ]
 
     write_table(file_path, table_header, table_content)
