@@ -1,0 +1,8 @@
+INFO - medical_densenet169 - Running command 'wrapper'
+INFO - medical_densenet169 - Started run with ID "22"
+learning_rate => [0.00033374]
+Found 4000 images belonging to 8 classes.
+Found 4000 images belonging to 8 classes.
+train indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+validation indicies:  {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+Epoch 1/1

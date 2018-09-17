@@ -1,0 +1,2 @@
+INFO - medical_densenet169 - Running command 'wrapper'
+INFO - medical_densenet169 - Started run with ID "8"

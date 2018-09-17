@@ -1,0 +1,13 @@
+INFO - densenet169_imagenet_transfer_medico - Running command 'wrapper'
+INFO - densenet169_imagenet_transfer_medico - Started run with ID "2"
+start validating on split 0
+training on ../tmp/training_data
+validation on ../tmp/validation_data
+weights: imagenet
+None
+Start training...
+Found 3518 images belonging to 16 classes.
+Found 1759 images belonging to 16 classes.
+train indicies:  {'blurry-nothing': 0, 'colon-clear': 1, 'dyed-lifted-polyps': 2, 'dyed-resection-margins': 3, 'esophagitis': 4, 'instruments': 5, 'normal-cecum': 6, 'normal-pylorus': 7, 'normal-z-line': 8, 'out-of-patient': 9, 'polyps': 10, 'retroflex-rectum': 11, 'retroflex-stomach': 12, 'stool-inclusions': 13, 'stool-plenty': 14, 'ulcerative-colitis': 15}
+validation indicies:  {'blurry-nothing': 0, 'colon-clear': 1, 'dyed-lifted-polyps': 2, 'dyed-resection-margins': 3, 'esophagitis': 4, 'instruments': 5, 'normal-cecum': 6, 'normal-pylorus': 7, 'normal-z-line': 8, 'out-of-patient': 9, 'polyps': 10, 'retroflex-rectum': 11, 'retroflex-stomach': 12, 'stool-inclusions': 13, 'stool-plenty': 14, 'ulcerative-colitis': 15}
+Epoch 1/150

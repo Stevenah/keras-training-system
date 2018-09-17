@@ -1,0 +1,104 @@
+{
+  "artifacts": [
+    "medical.combo.json"
+  ],
+  "command": "wrapper",
+  "experiment": {
+    "base_dir": "/home/steven/Github/keras-training-system/src",
+    "dependencies": [
+      "GPy==1.9.5",
+      "GPyOpt==1.2.5",
+      "Keras==2.2.2",
+      "numpy==1.14.5",
+      "sacred==0.7.4",
+      "tensorflow-gpu==1.10.1"
+    ],
+    "mainfile": "optimize.py",
+    "name": "medical_densenet169",
+    "repositories": [],
+    "sources": [
+      [
+        "optimize.py",
+        "_sources/optimize_97649dbdb56c1a23fe94f4043d831610.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_18abda31231e258056cc3146fc4c4569.py"
+      ],
+      [
+        "utils/metrics.py",
+        "_sources/metrics_05947cca947365c2abbb2652db67151d.py"
+      ],
+      [
+        "utils/util.py",
+        "_sources/util_ef16642f5268bcabcc8ce6036f84aa83.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/home/steven/anaconda3/envs/py36/lib/python3.6/site-packages/sacred/config/captured_function.py\", line 46, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"optimize.py\", line 237, in wrapper\n    return optimize(config)\n",
+    "  File \"optimize.py\", line 47, in optimize\n    hyperparameter_optimizer = GPyOpt.methods.BayesianOptimization( f=op_function, domain=bounds )\n",
+    "  File \"/home/steven/anaconda3/envs/py36/lib/python3.6/site-packages/GPyOpt/methods/bayesian_optimization.py\", line 118, in __init__\n    self._init_design_chooser()\n",
+    "  File \"/home/steven/anaconda3/envs/py36/lib/python3.6/site-packages/GPyOpt/methods/bayesian_optimization.py\", line 193, in _init_design_chooser\n    self.Y, _ = self.objective.evaluate(self.X)\n",
+    "  File \"/home/steven/anaconda3/envs/py36/lib/python3.6/site-packages/GPyOpt/core/task/objective.py\", line 50, in evaluate\n    f_evals, cost_evals = self._eval_func(x)\n",
+    "  File \"/home/steven/anaconda3/envs/py36/lib/python3.6/site-packages/GPyOpt/core/task/objective.py\", line 74, in _eval_func\n    rlt = self.func(np.atleast_2d(x[i]))\n",
+    "  File \"optimize.py\", line 75, in run_model\n    model = train(params, model, config, experiment)\n",
+    "  File \"optimize.py\", line 125, in train\n    optimizer = Nadam(\n",
+    "NameError: name 'Nadam' is not defined\n"
+  ],
+  "heartbeat": "2018-09-07T12:54:25.814074",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz",
+    "gpus": {
+      "driver_version": "390.87",
+      "gpus": [
+        {
+          "model": "GeForce GTX 980",
+          "persistence_mode": false,
+          "total_memory": 4041
+        }
+      ]
+    },
+    "hostname": "steven-Aurora-R3",
+    "os": [
+      "Linux",
+      "Linux-4.15.0-33-generic-x86_64-with-debian-buster-sid"
+    ],
+    "python_version": "3.6.5"
+  },
+  "meta": {
+    "command": "wrapper",
+    "options": {
+      "--beat_interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print_config": false,
+      "--priority": null,
+      "--queue": false,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [],
+      "help": false,
+      "with": false
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2018-09-07T12:52:14.628161",
+  "status": "FAILED",
+  "stop_time": "2018-09-07T12:54:25.816186"
+}

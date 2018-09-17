@@ -1,0 +1,35 @@
+{
+    "experiment": {
+        "name": "non_vgg16_fine_tuning_50_epochs"
+    },
+    "model": {
+        "name": "vgg-16",
+        "architecture": "vgg16",
+        "build_file": "vgg16_fine_tune",
+        "weights_file": "vgg16_weights.h5",
+        "model_file": "base_vgg16_fine_tune.h5"
+    },
+    "dataset": {
+        "link": "medico.json"
+    },
+    "optimizer": {
+        "name": "nadam"
+    },
+    "hyper_parameters": {
+        "epochs": 1,
+        "batch_size": 32,
+        "freeze_layers": 19,
+        "patience": 5
+    },
+    "image_processing": {
+        "image_width": 224,
+        "image_height": 224,
+        "image_channels": 3,
+        "training_data_generator": "basic",
+        "validation_data_generator": "basic"
+    },
+    "fine_tuning": {
+        "enabled": true,
+        "link": "vgg16.non.link.json"
+    }
+}

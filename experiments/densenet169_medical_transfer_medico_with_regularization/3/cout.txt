@@ -1,0 +1,3 @@
+INFO - densenet169_medical_transfer_medico_with_regularization - Running command 'wrapper'
+INFO - densenet169_medical_transfer_medico_with_regularization - Started run with ID "3"
+start validating on split 0

@@ -1,7 +1,7 @@
 from keras.applications.densenet import DenseNet169
 from keras.layers import Dense, GlobalAveragePooling2D
 from keras.models import Model
-from keras import regularizers
+import importlib
 
 def build(config):
 
@@ -10,6 +10,7 @@ def build(config):
     image_channels = config['image_processing']['image_channels']
 
     number_of_classes = config['dataset']['number_of_classes']
+    regularization = None
 
     weights = config['model'].get('weights', None)
     print("weights:", weights)
@@ -27,9 +28,16 @@ def build(config):
 
     x = base_model.output
     x = GlobalAveragePooling2D()(x)
+
+    if config['hyper_parameters'].get('activity_regularizer', False):
+        regularizer = config['hyper_parameters']['activity_regularizer']['name']
+        regularization = getattr(importlib.import_module(f'keras.regularizers'), regularizer)
+        regularization = regularization(**config['hyper_parameters']['activity_regularizer']['params'])
     
+    print(regularization)
+
     predictions = Dense(
-        activity_regularizer=regularizers.l1_l2(),
+        activity_regularizer=regularization,
         units=number_of_classes,
         activation='softmax',
         name='predictions')(x)
