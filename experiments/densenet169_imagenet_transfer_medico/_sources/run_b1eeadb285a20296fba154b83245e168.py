@@ -160,6 +160,8 @@ if __name__ == '__main__':
         # set config path
         config_path = f'../configs/active/{ config_file }'
 
+        print( f'Running model using configuration located at {config_path}' )
+
         # load config file
         config = json.load(open(config_path))
 

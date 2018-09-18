@@ -9,6 +9,18 @@ import importlib
 import shutil
 import os
 
+def create_class_weight(labels_dict, mu=0.15):
+    total = np.sum(labels_dict.values())
+    keys = labels_dict.keys()
+    class_weight = dict()
+
+    for key in keys:
+        score = math.log(mu*total/float(labels_dict[key]))
+        class_weight[key] = score if score > 1.0 else 1.0
+
+    return class_weight
+
+
 # function for training a model given a configuration
 def train( model, config, experiment, training_directory=None,
     validation_directory=None, file_identifier=None ):
@@ -126,6 +138,14 @@ def train( model, config, experiment, training_directory=None,
         optimizer=optimizer,
         metrics=metrics)
 
+    # difference in class counts
+    class_dispersion = { }
+
+    for class_index, class_name in enumerate(os.listdir(training_directory)):
+        class_dispersion[class_index] = len(os.path.join(training_directory, class_name))
+
+    class_weigths = create_class_weight(class_dispersion)
+
     # train model and get training metrics
     history = model.fit_generator(training_generator,
         steps_per_epoch=training_steps,
@@ -134,7 +154,8 @@ def train( model, config, experiment, training_directory=None,
         validation_steps=validation_steps,
         callbacks=callbacks,
         workers=0,
-        use_multiprocessing=False)
+        use_multiprocessing=False,
+        class_weight=class_weigths)
 
     # plot loss
     plot_loss(history, loss_plot_path)

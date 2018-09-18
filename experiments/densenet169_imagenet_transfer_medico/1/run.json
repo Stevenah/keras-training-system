@@ -5,7 +5,7 @@
   ],
   "command": "wrapper",
   "experiment": {
-    "base_dir": "/home/steven/Github/keras-training-system/src",
+    "base_dir": "/home/stevenah/github/keras-training-system/src",
     "dependencies": [
       "Keras==2.2.2",
       "numpy==1.14.5",
@@ -18,11 +18,11 @@
     "sources": [
       [
         "evaluate.py",
-        "_sources/evaluate_af9bdeb06071c38b09e5f6227b1ec20a.py"
+        "_sources/evaluate_f0315f8d61bf8a0c51a0fbaf3f7d834d.py"
       ],
       [
         "run.py",
-        "_sources/run_4195f7731ab921bc8074777c8e02c7a1.py"
+        "_sources/run_b1eeadb285a20296fba154b83245e168.py"
       ],
       [
         "train.py",
@@ -30,7 +30,7 @@
       ],
       [
         "utils/logging.py",
-        "_sources/logging_df9c3aa08f68c1a974c42a5b9c63c963.py"
+        "_sources/logging_c08ef0664e1fd0d0ab87765fb17ac0fb.py"
       ],
       [
         "utils/util.py",
@@ -38,26 +38,26 @@
       ]
     ]
   },
-  "heartbeat": "2018-09-17T13:52:06.460531",
+  "heartbeat": "2018-09-18T13:38:25.922950",
   "host": {
     "ENV": {},
-    "cpu": "Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz",
+    "cpu": "Intel(R) Core(TM) i5-4590 CPU @ 3.30GHz",
     "gpus": {
       "driver_version": "390.87",
       "gpus": [
         {
-          "model": "GeForce GTX 980",
+          "model": "GeForce GTX 1080 Ti",
           "persistence_mode": false,
-          "total_memory": 4041
+          "total_memory": 11170
         }
       ]
     },
-    "hostname": "steven-Aurora-R3",
+    "hostname": "mpg-2014-12",
     "os": [
       "Linux",
       "Linux-4.15.0-34-generic-x86_64-with-debian-buster-sid"
     ],
-    "python_version": "3.6.5"
+    "python_version": "3.6.6"
   },
   "meta": {
     "command": "wrapper",
@@ -88,7 +88,6 @@
   },
   "resources": [],
   "result": null,
-  "start_time": "2018-09-17T13:51:18.866508",
-  "status": "INTERRUPTED",
-  "stop_time": "2018-09-17T13:52:06.462429"
+  "start_time": "2018-09-18T13:13:53.377750",
+  "status": "RUNNING"
 }

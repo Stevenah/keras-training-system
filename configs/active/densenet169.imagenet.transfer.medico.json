@@ -30,6 +30,9 @@
             }
         }
     },
+    "evaluation": {
+        "path": "/home/stevenah/Pictures/Medico_2018_test_set"
+    },
     "image_processing": {
         "image_width": 224,
         "image_height": 224,

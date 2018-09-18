@@ -44,9 +44,14 @@ def write_table( file_path, table_header, table_content ):
             else: f.write( pad_string( table_row, table_size, ' ', '|' ) )
 
         f.write(pad_string('', table_size, '-', '-'))
-        f.write('\n')        
+        f.write('\n')
 
-
+def log_file_evaluation( file_name, image_name, prediction_label, prediction_confidence, prediction_time ):
+    file_path = os.path.join(TEMP_DIRECTORY, file_name)
+    file_action = 'a' if os.path.exists(file_path) else 'w'
+    with open( file_path, file_action ) as f:
+        f.write(f'{image_name},{prediction_label},{prediction_confidence},{prediction_time}\n')
+    
 def log_cross_validation_results( file_name, results, experiment_name, folds ):
 
     file_path = os.path.join( TEMP_DIRECTORY, file_name )
@@ -99,15 +104,14 @@ def log_to_results_comparison( results, experiment_name, folds ):
 
     write_table(file_path, table_header, table_content)
 
-def log_class_results( results, class_name, class_index ):
+def log_class_results( file_name, results, class_name, class_index ):
 
-    file_path = os.path.join(TEMP_DIRECTORY, 'class_results.txt')
+    file_path = os.path.join(TEMP_DIRECTORY, file_name)
 
     table_header = f'{class_name} summary'
     table_content = [ ]
 
     division_point  = max(max(map(len, ADVANCED_METRICS.values())), max(map(len, BASIC_METRICS.values())))
-    print(division_point)
 
     for key, metric in BASIC_METRICS.items():
         table_content.append( f'{ metric.ljust(division_point) } | { results[key] }' )
@@ -119,9 +123,9 @@ def log_class_results( results, class_name, class_index ):
         
     write_table(file_path, table_header, table_content)
 
-def log_misclassifications( misclassifications, class_name):
+def log_misclassifications( file_name, misclassifications, class_name):
 
-    file_path = os.path.join(TEMP_DIRECTORY, 'class_misclassifications.txt')
+    file_path = os.path.join(TEMP_DIRECTORY, file_name)
 
     table_header = f'Misclassified {class_name}'
     table_content = [ f' { miss_file_name }' for miss_file_name in misclassifications ]

@@ -7,6 +7,7 @@ from scipy.misc import imread, imsave, imresize
 import tensorflow as tf
 import numpy as np
 import os
+import time
 
 # file paths
 kfold_split_file_path = ''
@@ -94,27 +95,26 @@ def evaluate(model, config, experiment, validation_directory, file_identifier=''
 
     # save missclassified images to file together with class
     for class_name in missclassified:
-        log_misclassifications( missclassified[class_name], class_name )
+        log_misclassifications( f'{file_identifier}_class_misclassifications.txt', missclassified[class_name], class_name )
 
     # write kvasir legend to results file
-    log_class_legend('split_evaluation_summary.txt', class_names)
+    log_class_legend(f'{file_identifier}_split_evaluation_summary.txt', class_names)
 
     # write confusion table to results file
-    log_confusion_table('split_evaluation_summary.txt', confusion)
+    log_confusion_table(f'{file_identifier}_split_evaluation_summary.txt', confusion)
 
     # write model summary to results file
-    log_model_results('split_evaluation_summary.txt', metrics, file_identifier)
+    log_model_results(f'{file_identifier}_split_evaluation_summary.txt', metrics, file_identifier)
 
     # write summaries for each class
     for class_name in class_names:
 
         # class index
         class_index = label_index[class_name]
-
         class_metrics = { key: value[class_index] for key, value in metrics.items() }
 
         # write class summary to results file
-        log_class_results( class_metrics, class_name, class_index)
+        log_class_results( f'{file_identifier}_class_results.txt', class_metrics, class_name, class_index)
 
     evaluation_path = config['evaluation']['path']
 
@@ -130,18 +130,19 @@ def evaluate(model, config, experiment, validation_directory, file_identifier=''
 
         with tf.get_default_graph().as_default():
             start_time = time.time()
-            prediction = model.predict(image)
+            prediction = model.predict(image)[0]
             prediction_time = time.time() - start_time
 
-        prediction_index = np.argmax(prediction[0])
+        prediction_index = np.argmax(prediction)
         prediction_label = index_label[prediction_index]
         
-        log_file_evaluation( file_name, prediction_label, prediction[prediction_index], prediction_time )
+        log_file_evaluation( f'{file_identifier}_test_evaluation_results.txt', file_name, prediction_label, prediction[prediction_index], prediction_time )
 
     # add evaluation files to experiment
-    experiment.add_artifact( '../tmp/split_evaluation_summary.txt' )
-    experiment.add_artifact( '../tmp/class_misclassifications.txt' )
-    experiment.add_artifact( '../tmp/class_results.txt' )
+    experiment.add_artifact( f'../tmp/{file_identifier}_split_evaluation_summary.txt' )
+    experiment.add_artifact( f'../tmp/{file_identifier}_class_misclassifications.txt' )
+    experiment.add_artifact( f'../tmp/{file_identifier}_class_results.txt' )
+    experiment.add_artifact( f'../tmp/{file_identifier}_test_evaluation_results.txt' )
 
     # return evaluation metrics
     return {
