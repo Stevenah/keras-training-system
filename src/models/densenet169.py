@@ -34,8 +34,6 @@ def build(config):
         regularization = getattr(importlib.import_module(f'keras.regularizers'), regularizer)
         regularization = regularization(**config['hyper_parameters']['activity_regularizer']['params'])
     
-    print(regularization)
-
     predictions = Dense(
         activity_regularizer=regularization,
         units=number_of_classes,
