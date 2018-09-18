@@ -91,21 +91,6 @@ def evaluate(model, config, experiment, validation_directory, file_identifier=''
     # bundle metrics into dictionary
     metrics = { 'FP': FP, 'FN': FN, 'TP': TP, 'TN': TN, 'f1': f1, 'rec': rec, 'acc': acc, 'prec': prec, 'spec': spec, 'mcc': mcc }
 
-    # evaluate FPS
-    start_time = time.time()
-    for image in os.listdir(config['evaluation']['fpsDirectory']):
-
-        image = imread(os.path.join(config['evaluation']['fpsDirectory'], file_name), mode='RGB')
-        image = imresize(image, (image_width, image_height, image_channels))
-        image = image.reshape(1, image_width, image_height, image_channels)
-        image = np.true_divide(image, 255.)
-
-        with tf.get_default_graph().as_default():
-            _ = np.argmax(model.predict(image)[0])
-
-    total_time = time.time() - start_time
-    fps = len(os.listdir(config['evaluation']['fpsDirectory'])) // total_time
-
     # save missclassified images to file together with class
     for class_name in missclassified:
         log_misclassifications( missclassified[class_name], class_name )

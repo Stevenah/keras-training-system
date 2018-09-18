@@ -1,0 +1,13 @@
+INFO - densenet169_trained_on_medical_dataset - Running command 'wrapper'
+INFO - densenet169_trained_on_medical_dataset - Started run with ID "2"
+start validating on split 0
+training on ../tmp/training_data
+validation on ../tmp/validation_data
+weights: None
+None
+Start training...
+Found 28563 images belonging to 31 classes.
+Found 28563 images belonging to 31 classes.
+train indicies:  {'Coagulation': 0, 'Colon': 1, 'Cutting_Cold': 2, 'Cutting_HF': 3, 'Dissection_Blunt': 4, 'Injection': 5, 'Liver': 6, 'Ovary': 7, 'Oviduct': 8, 'Sling_Hysterectomy': 9, 'Suction_Irrigation': 10, 'Suturing': 11, 'Suturing_Other': 12, 'Suturing_Ovary': 13, 'Suturing_Uterus': 14, 'Suturing_Vagina': 15, 'Uterus': 16, 'instrument_0': 17, 'instrument_1': 18, 'instrument_2': 19, 'instrument_3': 20, 'phase_1': 21, 'phase_10': 22, 'phase_2': 23, 'phase_3': 24, 'phase_4': 25, 'phase_5': 26, 'phase_6': 27, 'phase_7': 28, 'phase_8': 29, 'phase_9': 30}
+validation indicies:  {'Coagulation': 0, 'Colon': 1, 'Cutting_Cold': 2, 'Cutting_HF': 3, 'Dissection_Blunt': 4, 'Injection': 5, 'Liver': 6, 'Ovary': 7, 'Oviduct': 8, 'Sling_Hysterectomy': 9, 'Suction_Irrigation': 10, 'Suturing': 11, 'Suturing_Other': 12, 'Suturing_Ovary': 13, 'Suturing_Uterus': 14, 'Suturing_Vagina': 15, 'Uterus': 16, 'instrument_0': 17, 'instrument_1': 18, 'instrument_2': 19, 'instrument_3': 20, 'phase_1': 21, 'phase_10': 22, 'phase_2': 23, 'phase_3': 24, 'phase_4': 25, 'phase_5': 26, 'phase_6': 27, 'phase_7': 28, 'phase_8': 29, 'phase_9': 30}
+Epoch 1/150

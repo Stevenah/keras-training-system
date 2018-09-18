@@ -29,9 +29,11 @@ tf.reset_default_graph()
 # remove unnecessary tensorflow output
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
+print("hello")
 # set dimension ordering to tensorflow
 K.set_image_dim_ordering('tf')
 
+print("hello")
 # main run function
 def run( config, config_path ):
 
