@@ -18,7 +18,7 @@ def create_class_weight(labels_dict, mu=0.20):
 
     for key in labels_dict.keys():
         score = float(labels_dict[key]) / total
-        class_weight[key] = score
+        class_weight[key] = score if score > 1.0 else 1.0
 
     return class_weight
 

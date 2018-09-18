@@ -14,11 +14,12 @@ import os
 
 def create_class_weight(labels_dict, mu=0.20):
     total = sum(labels_dict.values())
+    keys = labels_dict.keys()
     class_weight = dict()
 
-    for key in labels_dict.keys():
-        score = float(labels_dict[key]) / total
-        class_weight[key] = score
+    for key in keys:
+        score = math.log(mu * total / float(labels_dict[key]))
+        class_weight[key] = score if score > 1.0 else 1.0
 
     return class_weight
 

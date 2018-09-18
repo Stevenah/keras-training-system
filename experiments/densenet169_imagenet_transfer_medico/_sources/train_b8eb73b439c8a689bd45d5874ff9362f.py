@@ -9,18 +9,19 @@ import numpy as np
 
 import importlib
 import shutil
-import math
 import os
 
-def create_class_weight(labels_dict, mu=0.20):
-    total = sum(labels_dict.values())
+def create_class_weight(labels_dict, mu=0.15):
+    total = np.sum(labels_dict.values())
+    keys = labels_dict.keys()
     class_weight = dict()
 
-    for key in labels_dict.keys():
-        score = float(labels_dict[key]) / total
-        class_weight[key] = score
+    for key in keys:
+        score = math.log(mu*total/float(labels_dict[key]))
+        class_weight[key] = score if score > 1.0 else 1.0
 
     return class_weight
+
 
 # function for training a model given a configuration
 def train( model, config, experiment, training_directory=None,
@@ -142,16 +143,10 @@ def train( model, config, experiment, training_directory=None,
     # difference in class counts
     class_dispersion = { }
 
-    class_list = os.listdir(training_directory)
-    class_list.sort()
-
-    for class_index, class_name in enumerate(class_list):
+    for class_index, class_name in enumerate(os.listdir(training_directory)):
         class_dispersion[class_index] = len(os.path.join(training_directory, class_name))
 
     class_weigths = create_class_weight(class_dispersion)
-
-    for index, weight in class_weigths.items():
-        print(f'{class_list[index]}: ', weight)
 
     # train model and get training metrics
     history = model.fit_generator(training_generator,

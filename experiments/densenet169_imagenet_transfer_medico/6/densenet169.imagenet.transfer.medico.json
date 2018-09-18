@@ -3,7 +3,7 @@
         "name": "densenet169_imagenet_transfer_medico"
     },
     "model": {
-        "build_file": "densenet169_pooling",
+        "build_file": "densenet169_dense",
         "weights": "imagenet"
     },
     "dataset": {

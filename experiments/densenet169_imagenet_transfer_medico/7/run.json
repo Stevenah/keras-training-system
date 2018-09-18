@@ -1,11 +1,7 @@
 {
   "artifacts": [
-    "densenet169.medical.transfer.medico.w.reg.json",
-    "medico.json",
-    "split_0_accuracy_plot.png",
-    "split_0_loss_plot.png",
-    "split_0_densenet169_medical_transfer_medico_with_regularization_model.h5",
-    "split_evaluation_summary.txt"
+    "densenet169.imagenet.transfer.medico.json",
+    "medico.json"
   ],
   "command": "wrapper",
   "experiment": {
@@ -17,24 +13,24 @@
       "tensorflow-gpu==1.10.1"
     ],
     "mainfile": "run.py",
-    "name": "densenet169_medical_transfer_medico_with_regularization",
+    "name": "densenet169_imagenet_transfer_medico",
     "repositories": [],
     "sources": [
       [
         "evaluate.py",
-        "_sources/evaluate_74c7f16e5de658974ec7ef4989a9bfcb.py"
+        "_sources/evaluate_f0315f8d61bf8a0c51a0fbaf3f7d834d.py"
       ],
       [
         "run.py",
-        "_sources/run_4195f7731ab921bc8074777c8e02c7a1.py"
+        "_sources/run_b1eeadb285a20296fba154b83245e168.py"
       ],
       [
         "train.py",
-        "_sources/train_b71b8299b0737b8ca7f652ac8d3f5619.py"
+        "_sources/train_2c1ce1ddfe2f3ff5789b912acef1f67c.py"
       ],
       [
         "utils/logging.py",
-        "_sources/logging_9779181794b12801dac773aa7f060853.py"
+        "_sources/logging_c08ef0664e1fd0d0ab87765fb17ac0fb.py"
       ],
       [
         "utils/util.py",
@@ -42,7 +38,15 @@
       ]
     ]
   },
-  "heartbeat": "2018-09-17T03:59:57.379546",
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/home/steven/anaconda3/envs/keras/lib/python3.6/site-packages/sacred/config/captured_function.py\", line 46, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"run.py\", line 179, in wrapper\n    run( config, config_path )\n",
+    "  File \"run.py\", line 105, in run\n    file_identifier=f'split_{ file_identifier }' )\n",
+    "  File \"/home/steven/github/keras-training-system/src/train.py\", line 149, in train\n    for class_index, class_name in class_list:\n",
+    "ValueError: too many values to unpack (expected 2)\n"
+  ],
+  "heartbeat": "2018-09-18T18:30:09.065940",
   "host": {
     "ENV": {},
     "cpu": "Intel(R) Core(TM) i7-7700K CPU @ 4.20GHz",
@@ -92,7 +96,7 @@
   },
   "resources": [],
   "result": null,
-  "start_time": "2018-09-16T22:13:13.096875",
-  "status": "INTERRUPTED",
-  "stop_time": "2018-09-17T05:58:02.886989"
+  "start_time": "2018-09-18T18:29:45.254682",
+  "status": "FAILED",
+  "stop_time": "2018-09-18T18:30:09.067018"
 }
