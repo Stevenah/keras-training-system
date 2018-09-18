@@ -1,21 +1,15 @@
 # Keras Training Script
-
-This repository contains a system for training and evaluating deep convolutional neural networks using Keras. Using JSON based confiugration files, one can easily start and reproduce sessions which will be automatically logged to disk. This system was produced in conjuction with a master thesis written for the University of Oslo.
+This repository contains a pipeline for training and evaluating deep convolutional neural networks usnig Keras. The motivation of this system stems from the large mess created when trying to keep track of multiple neural network based experiments.
 
 
 ## Prerequisites
-
 This system requires the following core dependencies:
 
-* Python 3.6+
-* Pip 9.0+
-* Tensorflow (and required drivers if using GPU)
+* Python 3.6+ and Pip 9.0+
 
-With the these base requirements., the remainig python dependencies can easily be installed using pip by running the following comand in the root directory of this project.
+With the these base requirements, the remainig python dependencies can easily be installed using pip by running the following comand in the root directory of this project.
 
 ```bash
 pip isntall -r requirements.txt
 ```
-
-## Usage
 
