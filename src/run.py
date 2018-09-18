@@ -148,6 +148,7 @@ def run( config, config_path ):
 
     experiment.add_artifact(full_kfold_summary_file_path)
     experiment.add_artifact(all_results_file_path)
+    experiment.add_artifact('../tmp/results.csv')
 
 if __name__ == '__main__':
     

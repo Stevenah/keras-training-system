@@ -30,6 +30,7 @@ def evaluate(model, config, experiment, validation_directory, file_identifier=''
 
     # get keras labels in label-index format
     label_index = { class_name: index for index, class_name in enumerate(class_names) }
+    index_label = { index: class_name for index, class_name in enumerate(class_names) }
 
     # prepare confusion table
     confusion = np.zeros((number_of_classes, number_of_classes))
@@ -91,21 +92,6 @@ def evaluate(model, config, experiment, validation_directory, file_identifier=''
     # bundle metrics into dictionary
     metrics = { 'FP': FP, 'FN': FN, 'TP': TP, 'TN': TN, 'f1': f1, 'rec': rec, 'acc': acc, 'prec': prec, 'spec': spec, 'mcc': mcc }
 
-    # evaluate FPS
-    start_time = time.time()
-    for image in os.listdir(config['evaluation']['fpsDirectory']):
-
-        image = imread(os.path.join(config['evaluation']['fpsDirectory'], file_name), mode='RGB')
-        image = imresize(image, (image_width, image_height, image_channels))
-        image = image.reshape(1, image_width, image_height, image_channels)
-        image = np.true_divide(image, 255.)
-
-        with tf.get_default_graph().as_default():
-            _ = np.argmax(model.predict(image)[0])
-
-    total_time = time.time() - start_time
-    fps = len(os.listdir(config['evaluation']['fpsDirectory'])) // total_time
-
     # save missclassified images to file together with class
     for class_name in missclassified:
         log_misclassifications( missclassified[class_name], class_name )
@@ -129,6 +115,28 @@ def evaluate(model, config, experiment, validation_directory, file_identifier=''
 
         # write class summary to results file
         log_class_results( class_metrics, class_name, class_index)
+
+    evaluation_path = config['evaluation']['path']
+
+    for file_name in os.listdir(evaluation_path):
+
+        prediction = None
+        prediction_time = None
+
+        image = imread(os.path.join(evaluation_path, file_name), mode='RGB')
+        image = imresize(image, (image_width, image_height, image_channels))
+        image = image.reshape(1, image_width, image_height, image_channels)
+        image = np.true_divide(image, 255.)
+
+        with tf.get_default_graph().as_default():
+            start_time = time.time()
+            prediction = model.predict(image)
+            prediction_time = time.time() - start_time
+
+        prediction_index = np.argmax(prediction[0])
+        prediction_label = index_label[prediction_index]
+        
+        log_file_evaluation( file_name, prediction_label, prediction[prediction_index], prediction_time )
 
     # add evaluation files to experiment
     experiment.add_artifact( '../tmp/split_evaluation_summary.txt' )

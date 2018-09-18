@@ -44,7 +44,14 @@ def write_table( file_path, table_header, table_content ):
             else: f.write( pad_string( table_row, table_size, ' ', '|' ) )
 
         f.write(pad_string('', table_size, '-', '-'))
-        f.write('\n')        
+        f.write('\n')
+
+def log_file_evaluation( file_name, prediction_label, prediction_confidence, prediction_time ):
+    file_path = '../tmp/results.csv'
+    file_action = 'a' if os.path.exists(file_path) else 'w'
+    with open( file_path, file_action ) as f:
+        f.write(f'{file_name},{prediction_label},{prediction_confidence},{prediction_time}\n')
+    
 
 
 def log_cross_validation_results( file_name, results, experiment_name, folds ):
