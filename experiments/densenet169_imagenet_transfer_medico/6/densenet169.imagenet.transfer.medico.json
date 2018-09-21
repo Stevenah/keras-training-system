@@ -3,8 +3,11 @@
         "name": "densenet169_imagenet_transfer_medico"
     },
     "model": {
-        "build_file": "densenet169_dense",
-        "weights": "imagenet"
+        "build_file": "densenet169",
+        "weights": "imagenet",
+        "base_dir": "/home/stevenah/github/keras-training-system/experiments/densenet169_imagenet_transfer_medico/1",
+        "load": "densenet169_imagenet_transfer_medico_model.h5",
+        "train": false
     },
     "dataset": {
         "link": "medico.json"

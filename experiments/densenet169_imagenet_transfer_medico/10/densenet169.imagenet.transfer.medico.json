@@ -3,7 +3,7 @@
         "name": "densenet169_imagenet_transfer_medico"
     },
     "model": {
-        "build_file": "densenet169_dense",
+        "build_file": "densenet169",
         "weights": "imagenet"
     },
     "dataset": {
@@ -12,8 +12,8 @@
     "optimizer": {
         "name": "sgd",
         "params": {
-            "nesterov": false,
-            "lr": 0.001,
+            "nesterov": true,
+            "lr": 0.0004,
             "momentum": 0.9
         }
     },
@@ -22,11 +22,12 @@
         "batch_size": 16,
         "freeze_layers": 0,
         "patience": 5,
+        "class_weights": true,
         "activity_regularizer": {
             "name": "l1_l2",
             "params": {
-                "l1": 0.1,
-                "l2": 0.1
+                "l1": 0.001,
+                "l2": 0.001
             }
         }
     },

@@ -1,3 +1,0 @@
-INFO - medical_densenet169 - Running command 'wrapper'
-INFO - medical_densenet169 - Started run with ID "18"
-learning_rate => [0.00012598]

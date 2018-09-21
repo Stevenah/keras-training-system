@@ -1,3 +1,0 @@
-INFO - medical_densenet_169 - Running command 'run'
-INFO - medical_densenet_169 - Started run with ID "1"
-start validating on split 0
