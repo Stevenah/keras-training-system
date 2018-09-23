@@ -1,0 +1,5 @@
+INFO - densenet169_combo_imagenet_transfer_medico - Running command 'wrapper'
+INFO - densenet169_combo_imagenet_transfer_medico - Started run with ID "5"
+start validating on split 0
+training on ../tmp/training_data
+validation on ../tmp/validation_data
