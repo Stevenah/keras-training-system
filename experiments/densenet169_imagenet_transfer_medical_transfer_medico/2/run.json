@@ -8,7 +8,23 @@
     "split_0_densenet169_imagenet_transfer_medical_transfer_medico_model.h5",
     "split_0_split_evaluation_summary.txt",
     "split_0_class_misclassifications.txt",
-    "split_0_class_results.txt"
+    "split_0_class_results.txt",
+    "split_1_accuracy_plot.png",
+    "split_1_loss_plot.png",
+    "split_1_densenet169_imagenet_transfer_medical_transfer_medico_weights.h5",
+    "split_1_densenet169_imagenet_transfer_medical_transfer_medico_model.h5",
+    "split_1_split_evaluation_summary.txt",
+    "split_1_class_misclassifications.txt",
+    "split_1_class_results.txt",
+    "split_2_accuracy_plot.png",
+    "split_2_loss_plot.png",
+    "split_2_densenet169_imagenet_transfer_medical_transfer_medico_weights.h5",
+    "split_2_densenet169_imagenet_transfer_medical_transfer_medico_model.h5",
+    "split_2_split_evaluation_summary.txt",
+    "split_2_class_misclassifications.txt",
+    "split_2_class_results.txt",
+    "kfold_summary.txt",
+    "all_results.txt"
   ],
   "command": "wrapper",
   "experiment": {
@@ -45,7 +61,7 @@
       ]
     ]
   },
-  "heartbeat": "2018-09-23T22:00:32.694304",
+  "heartbeat": "2018-09-23T23:06:55.614559",
   "host": {
     "ENV": {},
     "cpu": "Intel(R) Core(TM) i7-7700K CPU @ 4.20GHz",
@@ -96,5 +112,6 @@
   "resources": [],
   "result": null,
   "start_time": "2018-09-23T20:55:32.689229",
-  "status": "RUNNING"
+  "status": "COMPLETED",
+  "stop_time": "2018-09-23T23:06:55.519645"
 }
