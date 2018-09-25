@@ -1,0 +1,41 @@
+{
+    "experiment": {
+        "name": "resnet101_imagenet_transfer_medico_group_batch_norm"
+    },
+    "model": {
+        "build_file": "resnet_group_norm",
+        "weights": "imagenet"
+    },
+    "dataset": {
+        "link": "medico.json"
+    },
+    "optimizer": {
+        "name": "sgd",
+        "params": {
+            "nesterov": true,
+            "lr": 0.0004,
+            "momentum": 0.9
+        }
+    },
+    "hyper_parameters": {
+        "epochs": 50,
+        "batch_size": 20,
+        "freeze_layers": 0,
+        "patience": 5,
+        "class_weights": true,
+        "activity_regularizer": {
+            "name": "l1_l2",
+            "params": {
+                "l1": 0.001,
+                "l2": 0.001
+            }
+        }
+    },
+    "image_processing": {
+        "image_width": 224,
+        "image_height": 224,
+        "image_channels": 3,
+        "training_data_generator": "basic",
+        "validation_data_generator": "basic"
+    }
+}

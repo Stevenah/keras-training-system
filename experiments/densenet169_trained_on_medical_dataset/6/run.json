@@ -1,7 +1,14 @@
 {
   "artifacts": [
     "densenet169.medical.json",
-    "lapgyn4.cataract.json"
+    "lapgyn4.cataract.json",
+    "split_0_accuracy_plot.png",
+    "split_0_loss_plot.png",
+    "split_0_densenet169_trained_on_medical_dataset_weights.h5",
+    "split_0_densenet169_trained_on_medical_dataset_model.h5",
+    "split_0_split_evaluation_summary.txt",
+    "split_0_class_misclassifications.txt",
+    "split_0_class_results.txt"
   ],
   "command": "wrapper",
   "experiment": {
@@ -38,7 +45,7 @@
       ]
     ]
   },
-  "heartbeat": "2018-09-21T10:57:08.876038",
+  "heartbeat": "2018-09-21T15:49:56.532310",
   "host": {
     "ENV": {},
     "cpu": "Intel(R) Core(TM) i5-4590 CPU @ 3.30GHz",
@@ -89,5 +96,6 @@
   "resources": [],
   "result": null,
   "start_time": "2018-09-20T15:26:27.904566",
-  "status": "RUNNING"
+  "status": "COMPLETED",
+  "stop_time": "2018-09-22T18:11:14.417439"
 }
