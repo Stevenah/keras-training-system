@@ -1,7 +1,30 @@
 {
   "artifacts": [
     "resnet101.imagenet.transfer.medico.group.batch.norm.json",
-    "medico.json"
+    "medico.json",
+    "split_0_accuracy_plot.png",
+    "split_0_loss_plot.png",
+    "split_0_resnet101_imagenet_transfer_medico_group_batch_norm_weights.h5",
+    "split_0_resnet101_imagenet_transfer_medico_group_batch_norm_model.h5",
+    "split_0_split_evaluation_summary.txt",
+    "split_0_class_misclassifications.txt",
+    "split_0_class_results.txt",
+    "split_1_accuracy_plot.png",
+    "split_1_loss_plot.png",
+    "split_1_resnet101_imagenet_transfer_medico_group_batch_norm_weights.h5",
+    "split_1_resnet101_imagenet_transfer_medico_group_batch_norm_model.h5",
+    "split_1_split_evaluation_summary.txt",
+    "split_1_class_misclassifications.txt",
+    "split_1_class_results.txt",
+    "split_2_accuracy_plot.png",
+    "split_2_loss_plot.png",
+    "split_2_resnet101_imagenet_transfer_medico_group_batch_norm_weights.h5",
+    "split_2_resnet101_imagenet_transfer_medico_group_batch_norm_model.h5",
+    "split_2_split_evaluation_summary.txt",
+    "split_2_class_misclassifications.txt",
+    "split_2_class_results.txt",
+    "kfold_summary.txt",
+    "all_results.txt"
   ],
   "command": "wrapper",
   "experiment": {
@@ -38,22 +61,7 @@
       ]
     ]
   },
-  "fail_trace": [
-    "Traceback (most recent call last):\n",
-    "  File \"/home/stevenah/anaconda3/lib/python3.6/site-packages/sacred/config/captured_function.py\", line 46, in captured_function\n    result = wrapped(*args, **kwargs)\n",
-    "  File \"run.py\", line 186, in wrapper\n    run( config, config_path )\n",
-    "  File \"run.py\", line 94, in run\n    model_builder = importlib.import_module(f'models.{model_builder_path}')\n",
-    "  File \"/home/stevenah/anaconda3/lib/python3.6/importlib/__init__.py\", line 126, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n",
-    "  File \"<frozen importlib._bootstrap>\", line 994, in _gcd_import\n",
-    "  File \"<frozen importlib._bootstrap>\", line 971, in _find_and_load\n",
-    "  File \"<frozen importlib._bootstrap>\", line 955, in _find_and_load_unlocked\n",
-    "  File \"<frozen importlib._bootstrap>\", line 665, in _load_unlocked\n",
-    "  File \"<frozen importlib._bootstrap_external>\", line 678, in exec_module\n",
-    "  File \"<frozen importlib._bootstrap>\", line 219, in _call_with_frames_removed\n",
-    "  File \"/home/stevenah/github/keras-training-system/src/models/resnet_group_norm.py\", line 27, in <module>\n    from keras.applications.imagenet_utils import _obtain_input_shape\n",
-    "ImportError: cannot import name '_obtain_input_shape'\n"
-  ],
-  "heartbeat": "2018-09-24T07:47:43.838455",
+  "heartbeat": "2018-09-24T13:39:26.470112",
   "host": {
     "ENV": {},
     "cpu": "Intel(R) Core(TM) i5-4590 CPU @ 3.30GHz",
@@ -103,7 +111,7 @@
   },
   "resources": [],
   "result": null,
-  "start_time": "2018-09-24T07:47:22.213801",
-  "status": "FAILED",
-  "stop_time": "2018-09-24T07:47:43.839426"
+  "start_time": "2018-09-24T07:53:20.249097",
+  "status": "COMPLETED",
+  "stop_time": "2018-09-24T13:39:25.586393"
 }

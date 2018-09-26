@@ -1,7 +1,0 @@
-{
-    "name": "Medical Combo",
-    "path": "/home/stevenah/Datasets/lapgyn4.cataract",
-    "split": 2,
-    "samples": 57134,
-    "number_of_classes": 31
-}

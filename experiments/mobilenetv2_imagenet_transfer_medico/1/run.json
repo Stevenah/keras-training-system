@@ -1,7 +1,30 @@
 {
   "artifacts": [
     "mobilenetv2.imagenet.transfer.medico.json",
-    "medico.json"
+    "medico.json",
+    "split_0_accuracy_plot.png",
+    "split_0_loss_plot.png",
+    "split_0_mobilenetv2_imagenet_transfer_medico_weights.h5",
+    "split_0_mobilenetv2_imagenet_transfer_medico_model.h5",
+    "split_0_split_evaluation_summary.txt",
+    "split_0_class_misclassifications.txt",
+    "split_0_class_results.txt",
+    "split_1_accuracy_plot.png",
+    "split_1_loss_plot.png",
+    "split_1_mobilenetv2_imagenet_transfer_medico_weights.h5",
+    "split_1_mobilenetv2_imagenet_transfer_medico_model.h5",
+    "split_1_split_evaluation_summary.txt",
+    "split_1_class_misclassifications.txt",
+    "split_1_class_results.txt",
+    "split_2_accuracy_plot.png",
+    "split_2_loss_plot.png",
+    "split_2_mobilenetv2_imagenet_transfer_medico_weights.h5",
+    "split_2_mobilenetv2_imagenet_transfer_medico_model.h5",
+    "split_2_split_evaluation_summary.txt",
+    "split_2_class_misclassifications.txt",
+    "split_2_class_results.txt",
+    "kfold_summary.txt",
+    "all_results.txt"
   ],
   "command": "wrapper",
   "experiment": {
@@ -38,16 +61,7 @@
       ]
     ]
   },
-  "fail_trace": [
-    "Traceback (most recent call last):\n",
-    "  File \"/home/steven/anaconda3/envs/keras/lib/python3.6/site-packages/sacred/config/captured_function.py\", line 46, in captured_function\n    result = wrapped(*args, **kwargs)\n",
-    "  File \"run.py\", line 186, in wrapper\n    run( config, config_path )\n",
-    "  File \"run.py\", line 97, in run\n    model = model_builder.build(config)\n",
-    "  File \"/home/steven/github/keras-training-system/src/models/mobilenetv2.py\", line 24, in build\n    include_top=False)\n",
-    "  File \"/home/steven/anaconda3/envs/keras/lib/python3.6/site-packages/keras_applications/mobilenet_v2.py\", line 318, in MobileNetV2\n    'Input shape provided = %s' % (input_shape,))\n",
-    "ValueError: If imagenet weights are being loaded, input must have a static square shape(one of (96, 96), (128, 128), (160, 160),(192, 192), or (224, 224)).Input shape provided = (299, 299, 3)\n"
-  ],
-  "heartbeat": "2018-09-22T12:29:59.098556",
+  "heartbeat": "2018-09-22T14:23:10.739112",
   "host": {
     "ENV": {},
     "cpu": "Intel(R) Core(TM) i7-7700K CPU @ 4.20GHz",
@@ -97,7 +111,7 @@
   },
   "resources": [],
   "result": null,
-  "start_time": "2018-09-22T12:29:47.017352",
-  "status": "FAILED",
-  "stop_time": "2018-09-22T12:29:59.099310"
+  "start_time": "2018-09-22T12:35:22.492237",
+  "status": "COMPLETED",
+  "stop_time": "2018-09-22T14:23:10.619288"
 }

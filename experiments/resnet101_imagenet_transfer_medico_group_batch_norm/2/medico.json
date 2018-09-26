@@ -1,7 +1,0 @@
-{
-    "name": "Medico",
-    "path": "/home/stevenah/Datasets/medico",
-    "split": 3,
-    "samples": 5293,
-    "number_of_classes": 16
-}
