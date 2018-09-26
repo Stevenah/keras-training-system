@@ -1,3 +1,102 @@
 INFO - densenet169_combo_imagenet_transfer_medico - Running command 'wrapper'
-INFO - densenet169_combo_imagenet_transfer_medico - Started run with ID "1"
+INFO - densenet169_combo_imagenet_transfer_medico - Started run with ID "6"
 start validating on split 0
+training on ../tmp/training_data
+validation on ../tmp/validation_data
+Start evaluation...
+Starting blurry-nothing
+Starting colon-clear
+Starting dyed-lifted-polyps
+Starting dyed-resection-margins
+Starting esophagitis
+Starting instruments
+Starting normal-cecum
+Starting normal-pylorus
+Starting normal-z-line
+Starting out-of-patient
+Starting polyps
+Starting retroflex-rectum
+Starting retroflex-stomach
+Starting stool-inclusions
+Starting stool-plenty
+Starting ulcerative-colitis
+True Positives: [ 58.  89. 152. 136. 109.  10. 136. 146. 145.   1. 203.  79. 131.  43.
+ 122. 152.]
+True Negatives: [1701. 1670. 1605. 1621. 1611. 1747. 1621. 1611. 1575. 1758. 1552. 1680.
+ 1627. 1716. 1637. 1606.]
+False Positives: [ 0.  0.  0.  2. 39.  2.  2.  0.  0.  0.  1.  0.  1.  0.  0.  0.]
+False Positives: [ 0.  0.  2.  0.  0.  0.  0.  2. 39.  0.  3.  0.  0.  0.  0.  1.]
+starting test validation...
+f1 [0.9746265391557742]
+rec [0.983777743578238]
+acc [0.9966600341102899]
+prec [0.9705222871383358]
+spec [0.9982185867742526]
+mcc [0.9742656530178002]
+start validating on split 1
+training on ../tmp/training_data
+validation on ../tmp/validation_data
+Start evaluation...
+Starting blurry-nothing
+Starting colon-clear
+Starting dyed-lifted-polyps
+Starting dyed-resection-margins
+Starting esophagitis
+Starting instruments
+Starting normal-cecum
+Starting normal-pylorus
+Starting normal-z-line
+Starting out-of-patient
+Starting polyps
+Starting retroflex-rectum
+Starting retroflex-stomach
+Starting stool-inclusions
+Starting stool-plenty
+Starting ulcerative-colitis
+True Positives: [ 58.  89. 152. 133. 105.   7. 136. 146. 144.   1. 202.  78. 131.  43.
+ 122. 152.]
+True Negatives: [1701. 1670. 1602. 1620. 1610. 1747. 1621. 1612. 1571. 1758. 1552. 1679.
+ 1627. 1716. 1637. 1602.]
+False Positives: [ 0.  0.  0.  5. 43.  5.  2.  0.  1.  0.  2.  1.  1.  0.  0.  0.]
+False Positives: [ 0.  0.  5.  1.  1.  0.  0.  1. 43.  0.  3.  1.  0.  0.  0.  5.]
+starting test validation...
+f1 [0.9746265391557742, 0.9585790417374814]
+rec [0.983777743578238, 0.9784604665194119]
+acc [0.9966600341102899, 0.995736213757817]
+prec [0.9705222871383358, 0.9503208560246881]
+spec [0.9982185867742526, 0.9977306861442059]
+mcc [0.9742656530178002, 0.9593833961164415]
+start validating on split 2
+training on ../tmp/training_data
+validation on ../tmp/validation_data
+Start evaluation...
+Starting blurry-nothing
+Starting colon-clear
+Starting dyed-lifted-polyps
+Starting dyed-resection-margins
+Starting esophagitis
+Starting instruments
+Starting normal-cecum
+Starting normal-pylorus
+Starting normal-z-line
+Starting out-of-patient
+Starting polyps
+Starting retroflex-rectum
+Starting retroflex-stomach
+Starting stool-inclusions
+Starting stool-plenty
+Starting ulcerative-colitis
+True Positives: [ 58.  89. 146. 138. 113.  11. 135. 146. 145.   1. 198.  78. 128.  43.
+ 122. 152.]
+True Negatives: [1701. 1670. 1607. 1616. 1611. 1747. 1620. 1612. 1579. 1758. 1553. 1677.
+ 1627. 1716. 1637. 1598.]
+False Positives: [ 0.  0.  6.  0. 35.  1.  3.  0.  0.  0.  6.  1.  4.  0.  0.  0.]
+False Positives: [ 0.  0.  0.  5.  0.  0.  1.  1. 35.  0.  2.  3.  0.  0.  0.  9.]
+starting test validation...
+f1 [0.9746265391557742, 0.9585790417374814, 0.9731156183414875]
+rec [0.983777743578238, 0.9784604665194119, 0.9783435750106604]
+acc [0.9966600341102899, 0.995736213757817, 0.9960204661739624]
+prec [0.9705222871383358, 0.9503208560246881, 0.971662146417366]
+spec [0.9982185867742526, 0.9977306861442059, 0.9978561869289251]
+mcc [0.9742656530178002, 0.9593833961164415, 0.9720591857945133]
+INFO - densenet169_combo_imagenet_transfer_medico - Completed after 0:22:22

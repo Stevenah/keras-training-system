@@ -11,8 +11,13 @@ def build(config):
     model_input = Input((image_width, image_height, image_channels))
 
     models = config['model']['models']
-    models = [ load_model(model)(model_input) for model in models ]
+    models = [ load_model(model) for model in models ]
 
-    averaged = Average(models)
+    for model_index, model in enumerate(models):
+        model.name = f'model_{ model_index }'
+
+    models = [ model(model_input) for model in models ]
+
+    averaged = Average()(models)
 
     return Model(inputs=model_input, outputs=averaged, name='ensemble')

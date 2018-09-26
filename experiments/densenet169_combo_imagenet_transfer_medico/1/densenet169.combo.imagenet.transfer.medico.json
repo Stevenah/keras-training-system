@@ -3,13 +3,13 @@
         "name": "densenet169_combo_imagenet_transfer_medico"
     },
     "model": {
-        "build_file": "densenet169_combo",
+        "build_file": "ensemble",
         "train": false,
         "weights": "imagenet",
         "models": [
-            "split_0_densenet169_imagenet_transfer_medico_model",
-            "split_1_densenet169_imagenet_transfer_medico_model",
-            "split_2_densenet169_imagenet_transfer_medico_model"
+            "/home/stevenah/github/keras-training-system/experiments/densenet169_imagenet_transfer_medico/1/split_0_densenet169_imagenet_transfer_medico_model.h5",
+            "/home/stevenah/github/keras-training-system/experiments/densenet169_imagenet_transfer_medico/1/split_1_densenet169_imagenet_transfer_medico_model.h5",
+            "/home/stevenah/github/keras-training-system/experiments/densenet169_imagenet_transfer_medico/1/split_2_densenet169_imagenet_transfer_medico_model.h5"
         ]
     },
     "dataset": {
