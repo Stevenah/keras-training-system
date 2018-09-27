@@ -93,6 +93,8 @@ def run( config, config_path ):
             model_builder_path = config['model']['build_file']
             model_builder = importlib.import_module(f'models.{model_builder_path}')
 
+            experiment.add_artifact(f'./models/{ model_builder_path }.py')
+
             # build model using importet model builder
             model = model_builder.build(config)
 
