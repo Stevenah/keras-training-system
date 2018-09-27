@@ -31,10 +31,12 @@ def create_class_weight(labels_dict, mu=0.15):
     class_weight = dict()
 
     for key in keys:
-        score = math.log(mu * total / float(labels_dict[key]))
+        score = math.log(mu*total/float(labels_dict[key]))
         class_weight[key] = score if score > 1.0 else 1.0
 
     return class_weight
+
+
 
 # function for training a model given a configuration
 def train( model, config, experiment, training_directory=None,

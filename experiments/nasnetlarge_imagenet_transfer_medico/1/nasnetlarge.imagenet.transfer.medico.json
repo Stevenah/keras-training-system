@@ -1,9 +1,9 @@
 {
     "experiment": {
-        "name": "mobilenetv2_imagenet_transfer_medico"
+        "name": "nasnetlarge_imagenet_transfer_medico"
     },
     "model": {
-        "build_file": "mobilenetv2",
+        "build_file": "nasnetlarge",
         "weights": "imagenet"
     },
     "dataset": {
@@ -32,8 +32,8 @@
         }
     },
     "image_processing": {
-        "image_width": 224,
-        "image_height": 224,
+        "image_width": 299,
+        "image_height": 299,
         "image_channels": 3,
         "training_data_generator": "basic",
         "validation_data_generator": "basic"

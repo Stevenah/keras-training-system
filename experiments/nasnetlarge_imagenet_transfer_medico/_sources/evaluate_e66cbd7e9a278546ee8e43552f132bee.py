@@ -83,7 +83,7 @@ def evaluate(model, config, experiment, validation_directory, file_identifier=''
     print ( f"True Positives: { TP }" )
     print ( f"True Negatives: { TN }" )
     print ( f"False Positives: { FP }" )
-    print ( f"False Negatives: { FN }" )
+    print ( f"False Positives: { FN }" )
 
     # calculate metrics based on FP, FN, TP and TN
     f1 = np.nan_to_num(f1score(TP, TN, FP, FN))
@@ -93,30 +93,8 @@ def evaluate(model, config, experiment, validation_directory, file_identifier=''
     spec = np.nan_to_num(specificity(TP, TN, FP, FN))
     mcc = np.nan_to_num(matthews_correlation_coefficient(TP, TN, FP, FN))
 
-    macro_metrics = {
-        'FP': FP, 'FN': FN, 'TP': TP, 'TN': TN,
-        'f1': f1, 'rec': rec, 'acc': acc, 'prec': prec,
-        'spec': spec, 'mcc': mcc
-    }
-
-    micro_FP = FP.sum()
-    micro_FN = FN.sum()
-    micro_TP = TP.sum()
-    micro_TN = TN.sum()
-
-    micro_f1 = np.nan_to_num(f1score(micro_TP, micro_TN, micro_FP, micro_FN))
-    micro_rec = np.nan_to_num(recall(micro_TP, micro_TN, micro_FP, micro_FN))
-    micro_acc = np.nan_to_num(accuracy(micro_TP, micro_TN, micro_FP, micro_FN))
-    micro_prec = np.nan_to_num(precision(micro_TP, micro_TN, micro_FP, micro_FN))
-    micro_spec = np.nan_to_num(specificity(micro_TP, micro_TN, micro_FP, micro_FN))
-    micro_mcc = np.nan_to_num(matthews_correlation_coefficient(micro_TP, micro_TN, micro_FP, micro_FN))
-
     # bundle metrics into dictionary
-    micro_metrics = { 
-        'FP': micro_FP, 'FN': micro_FN, 'TP': micro_TP, 'TN': micro_TN,
-        'f1': micro_f1, 'rec': micro_rec, 'acc': micro_acc, 'prec': micro_prec,
-        'spec': micro_spec, 'mcc': micro_mcc
-    }
+    metrics = { 'FP': FP, 'FN': FN, 'TP': TP, 'TN': TN, 'f1': f1, 'rec': rec, 'acc': acc, 'prec': prec, 'spec': spec, 'mcc': mcc }
 
     # save missclassified images to file together with class
     for class_name in missclassified:
@@ -129,14 +107,14 @@ def evaluate(model, config, experiment, validation_directory, file_identifier=''
     log_confusion_table(f'{file_identifier}_split_evaluation_summary.txt', confusion)
 
     # write model summary to results file
-    log_model_results(f'{file_identifier}_split_evaluation_summary.txt', macro_metrics, file_identifier)
+    log_model_results(f'{file_identifier}_split_evaluation_summary.txt', metrics, file_identifier)
 
     # write summaries for each class
     for class_name in class_names:
 
         # class index
         class_index = label_index[class_name]
-        class_metrics = { key: value[class_index] for key, value in macro_metrics.items() }
+        class_metrics = { key: value[class_index] for key, value in metrics.items() }
 
         # write class summary to results file
         log_class_results( f'{file_identifier}_class_results.txt', class_metrics, class_name, class_index)
